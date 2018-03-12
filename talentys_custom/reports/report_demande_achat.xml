@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <template id="report_demande_achat">
+        <t t-call="report.html_container">
+           <t t-call="report.custom_external_layout">
+                <t t-foreach="docs" t-as="o">
+                <!--<t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />-->
+                <div class="page">
+                    <br/><br/>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4 text-left"><strong>TALENTYS</strong></div>
+                            <div class="col-xs-8" style="font-size:12px;">
+                                <strong>DEMANDE D'ACHAT D'EXPLOITATION / DECAISSEMENT&#032;<span t-field="o.name"/></strong>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row" style="border-bottom:2px solid black;">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4 text-center" style="color:red; font-size:14px;"><strong>BCF</strong></div>
+                            <div class="col-xs-8">
+                                Date&#032;<span t-field="o.date"/>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-4"><strong>DEMANDEUR:</strong></div>
+                                        <div class="col-xs-8"><span t-field="o.demandeur_id"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-4"><strong>FOURNISSEUR:</strong></div>
+                                        <div class="col-xs-8"><span t-field="o.supplier_id.name"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-4"><strong>Tel / Fax: (225)</strong></div>
+                                        <div class="col-xs-8"><span t-field="o.supplier_id.phone"/>/<span t-field="o.supplier_id.fax"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-4"><strong>Délai de livraison:</strong></div>
+                                        <div class="col-xs-8"><span t-field="o.quotation_id.date_planned"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-6"><strong>Condition de règlement:</strong></div>
+                                        <div class="col-xs-6"><span t-field="o.quotation_id.payment_term_id"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-6"><strong>Client:</strong></div>
+                                        <div class="col-xs-6"><span t-field="o.customer_id"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-6"><strong>N°Devis:</strong></div>
+                                        <div class="col-xs-6"><span t-field="o.sale_id.name"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-6"><strong>PVHT:</strong></div>
+                                        <div class="col-xs-6"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-6"><strong>Délai de livraison:</strong></div>
+                                        <div class="col-xs-6"><span t-field="o.sale_id.delai_livraison"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-6"><strong>Condition de règlement:</strong></div>
+                                        <div class="col-xs-6"><span t-field="o.sale_id.payment_term_id"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <div class="row">
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <tr>
+                                <th style="text-align:center; border:solid black 2px;" width="10%">Ref</th>
+                                <th style="text-align:center; border:solid black 2px;" width="50%">Désignation</th>
+                                <th style="text-align:center; border:solid black 2px;" width="10%">Qté</th>
+                                <th style="text-align:center; border:solid black 2px;" width="10%">P.U.HT</th>
+                                <th style="text-align:center; border:solid black 2px;" width="10%">%Remise</th>
+                                <th style="text-align:center; border:solid black 2px;" width="10%">Mt HT</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border:solid black 2px;"></td>
+                                    <td style="border:solid black 2px;"><span t-field="o.line_det_ids.product_id.name"/></td>
+                                    <td style="border:solid black 2px;text-align:right;"><span t-field="o.line_det_ids.product_qty"/></td>
+                                    <td style="border:solid black 2px;text-align:right;"><span t-field="o.line_det_ids.price_unit"/></td>
+                                    <td style="border:solid black 2px;text-align:right;"><span t-field="o.line_det_ids.discount"/></td>
+                                    <td style="border:solid black 2px;text-align:right;"><span t-field="o.line_det_ids.subtotal"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align:left;text-align:center;border:solid black 2px;">Montant Total HT</td>
+                                    <td colspan="3" style="text-align:right;border:solid black 2px;"><span t-field="o.amount_untaxed"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align:center; border:solid black 2px;">TVA 18%</td>
+                                    <td colspan="3" style="text-align:right;border:solid black 2px;"><span t-field="o.amount_tax"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align:center; border:solid black 2px;"><strong>NET A PAYER</strong></td>
+                                    <td colspan="3" style="text-align:right;border:solid black 2px;"><span t-field="o.amount_total"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3">Signature précédée de :</div>
+                            <div class="col-xs-6 text-left">
+                                A - " Ok pour décaissement immédiat " <br/>
+                                B - " Ok pour tenir compte dans le prochain approvisionnement " <br/>
+                                C - " Ok pour émission BC "
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th style="border:solid black 2px;text-align:center;" width="10"><strong>Visa sce émetteur</strong></th>
+                                    <th style="border:solid black 2px;text-align:center;" width="10"><strong>Visa Resp. Service</strong></th>
+                                    <th style="border:solid black 2px;text-align:center;" width="10"><strong>Visa Service financier</strong></th>
+                                    <th style="border:solid black 2px;text-align:center;" width="60">Visa DG</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border:solid black 2px;" height="100"></td>
+                                    <td style="border:solid black 2px;" height="100"></td>
+                                    <td style="border:solid black 2px;" height="100"></td>
+                                    <td style="border:solid black 2px;" height="100"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+           </t>
+        </t>
+    </template>
+</data>
+</odoo>

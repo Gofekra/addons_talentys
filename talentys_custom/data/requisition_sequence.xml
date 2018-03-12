@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+    	<!-- Sequence Expression de besoin -->
+        <record id="sequence_exp_besoin" model="ir.sequence">
+            <field name="name">Expression de besoin</field>
+            <field name="code">purchase.exp.besoin</field>
+            <field name="prefix">EXB-</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+        
+        <!-- Sequence Demande d'achat-->
+        <record id="sequence_exp_achat" model="ir.sequence">
+            <field name="name">Demande achat</field>
+            <field name="code">purchase.exp.achat</field>
+            <field name="prefix">DA-</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+        
+        <!-- Sequence Bon de sortie-->
+        <record id="sequence_bon_sortie" model="ir.sequence">
+            <field name="name">Bon de sortie</field>
+            <field name="code">purchase.exp.sortie</field>
+            <field name="prefix">BS-</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    
+    </data>
+</openerp>

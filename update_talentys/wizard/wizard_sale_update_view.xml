@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_update_view" model="ir.ui.view">
+        <field name="name">update.sale.order.line.form.custom.view</field>
+        <field name="model">update.sale.order.line</field>
+        <field name="arch" type="xml">
+            <form string="Update">
+                <footer>
+                    <button name="updateSaleOrder" string="Update" type="object" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+     <record id="action_wizard_update_view" model="ir.actions.act_window">
+        <field name="name">Update</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">update.sale.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="update_sale_order_line" name="Update sale order lines" sequence="50" parent="sales_team.menu_base_partner"
+            action="action_wizard_update_view"/>
+</odoo>

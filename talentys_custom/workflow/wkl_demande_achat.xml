@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+	    	<!-- Workflow besoin-->
+	    	<record id="workflow_dabasic" model="workflow">
+	    		<field name="name">demande.achat.basic</field>
+	    		<field name="osv">purchase.exp.achat</field>	
+	    	</record>
+    	
+    		<!-- Workflow besoin activities -->
+    		<record id="act_besoin_draft" model="workflow.activity">
+    			<field name="name">draft</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_draft()</field>
+    			<field name="flow_start">True</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_confirmed" model="workflow.activity">
+    			<field name="name">confirmed</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_confirm()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_service" model="workflow.activity">
+    			<field name="name">service</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_service()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_departement" model="workflow.activity">
+    			<field name="name">departement</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_departement()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_finance" model="workflow.activity">
+    			<field name="name">finance</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_finance()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_direction" model="workflow.activity">
+    			<field name="name">direction</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_direction()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_achat" model="workflow.activity">
+    			<field name="name">achat</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_achat()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_caisse" model="workflow.activity">
+    			<field name="name">caisse</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_caisse()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_commande" model="workflow.activity">
+    			<field name="name">commande</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_commande()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_done" model="workflow.activity">
+    			<field name="name">done</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_done()</field>   		
+    		</record>
+    		
+    		<record id="act_besoin_bon" model="workflow.activity">
+    			<field name="name">bon</field>
+    			<field name="wkf_id" ref="workflow_dabasic"></field> 
+    			<field name="kind">function</field>
+    			<field name="action">action_bon_sortie()</field>   		
+    		</record>
+    		
+    		
+    		
+    	    <!-- Worflow besoin transition -->
+    	    <record id="trans_draft_service" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_draft"/>
+	            <field name="act_to" ref="act_besoin_service"/>
+	            <field name="signal">signal_service</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_draft_departement" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_draft"/>
+	            <field name="act_to" ref="act_besoin_departement"/>
+	            <field name="signal">signal_departement</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_service_departement" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_service"/>
+	            <field name="act_to" ref="act_besoin_departement"/>
+	            <field name="signal">signal_departement</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_departement_finance" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_departement"/>
+	            <field name="act_to" ref="act_besoin_finance"/>
+	            <field name="signal">signal_finance</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_finance_direction" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_finance"/>
+	            <field name="act_to" ref="act_besoin_direction"/>
+	            <field name="signal">signal_direction</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_direction_finance" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_direction"/>
+	            <field name="act_to" ref="act_besoin_finance"/>
+	            <field name="signal">signal_finance</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_finance_achat" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_finance"/>
+	            <field name="act_to" ref="act_besoin_achat"/>
+	            <field name="signal">signal_achat</field>
+	            <field name="condition">type_demande in ('achat','divers','general','technique')</field>
+            </record>
+            
+            
+            <record id="trans_finance_caisse" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_finance"/>
+	            <field name="act_to" ref="act_besoin_caisse"/>
+	            <field name="signal">signal_caisse</field>
+	            <field name="condition">type_demande in ('achat','divers')</field>
+            </record>
+            
+            
+            <record id="trans_caisse_done" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_caisse"/>
+	            <field name="act_to" ref="act_besoin_done"/>
+	            <field name="signal">signal_done</field>
+	            <field name="condition">type_demande=='divers'</field>
+            </record>
+            
+            <record id="trans_achat_commande" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_achat"/>
+	            <field name="act_to" ref="act_besoin_commande"/>
+	            <field name="signal">signal_commande</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_commande_bon" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_commande"/>
+	            <field name="act_to" ref="act_besoin_bon"/>
+	            <field name="signal">signal_bon</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_bon_bon" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_bon"/>
+	            <field name="act_to" ref="act_besoin_bon"/>
+	            <field name="signal">signal_bon</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_bon_done" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_bon"/>
+	            <field name="act_to" ref="act_besoin_done"/>
+	            <field name="signal">signal_done</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_commande_done" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_commande"/>
+	            <field name="act_to" ref="act_besoin_done"/>
+	            <field name="signal">signal_done</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_service_draft" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_service"/>
+	            <field name="act_to" ref="act_besoin_draft"/>
+	            <field name="signal">signal_draft</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_departement_draft" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_departement"/>
+	            <field name="act_to" ref="act_besoin_draft"/>
+	            <field name="signal">signal_draft</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_finance_draft" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_finance"/>
+	            <field name="act_to" ref="act_besoin_draft"/>
+	            <field name="signal">signal_draft</field>
+	            <field name="condition">True</field>
+            </record>
+            
+            <record id="trans_direction_draft" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_direction"/>
+	            <field name="act_to" ref="act_besoin_draft"/>
+	            <field name="signal">signal_draft</field>
+	            <field name="condition">True</field>
+            </record>
+
+           <record id="trans_done_draft" model="workflow.transition">
+	            <field name="act_from" ref="act_besoin_done"/>
+	            <field name="act_to" ref="act_besoin_draft"/>
+	            <field name="signal">signal_draft</field>
+	            <field name="condition">True</field>
+            </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_purchase_purchase_request">
+        <t t-call="report.html_container">
+            <t t-call="report.external_layout">
+                <t t-foreach="docs" t-as="doc">
+
+
+                    <div class="page">
+                         <div class="row " style="font-size:smaller;border: thin solid #000000; font-family:Georgia,Verdana" >
+                            <div class="row">
+                                <div class="col-xs-2" ></div>
+                                <div class="col-xs-8 pull-center" style="margin-top:10px;font-size:small; font-style:italic;"><strong><span style="margin-left: 100px" >DEMANDE D'ACHAT N°</span>  <span class="text-right" style="margin-left: 40px;font-size:smaller;" t-field="doc.name"/></strong>  </div>
+                                <div class="col-xs-2" ></div>
+                            </div>
+                            <div class="row" style="margin-top:35px;font-family:Verdana;font-size:smaller;">
+                            <div class="col-xs-6 pull-left "  >
+                                <p class="row"> <strong><span class="col-xs-6 text-left">Type:             </span>  <span class="col-xs-6 text-left" style="" t-field="doc.type_demande" />          </strong></p>
+                                <p class="row"> <strong><span class="col-xs-6 text-left">Date:             </span>  <span class="col-xs-6 text-left" t-field="doc.date"/>                   </strong></p>
+                                <p class="row"> <strong><span class="col-xs-6 text-left">Demandeur:        </span>  <span class="col-xs-6 text-left" t-field="doc.user_id"/>                </strong></p>
+                                <p class="row"> <strong><span class="col-xs-6 text-left">Fournisseur:      </span>  <span class="col-xs-6 text-left" t-field="doc.line_ids.supplier_id"  />     </strong></p>
+                            </div>
+                            <div class="col-xs-6 pull-right">
+                                <p class="row"><strong><span class="col-xs-6 text-left">Client Final:        </span>  <span class="col-xs-6 text-left" t-field="doc.line_ids.department_id" style="color:#3AA0D2;"/></strong>   </p>
+                                <p class="row"><strong><span class="col-xs-6 text-left">N° Devis:            </span>  <span class="col-xs-6 text-left" t-field="doc.sale_order_id"/>               </strong>   </p>
+                                <p class="row"><strong><span class="col-xs-6 text-left">Montant HT:          </span> <span class="col-xs-6 text-left" t-field="doc.amount_untaxed" style="color:#3AA0D2;"/>     </strong>   </p>
+                                <p class="row"><strong><span class="col-xs-6 left">Delai de Livraison : </span><!--span class="col-xs-6 text-left" t-field="doc.team_id" style="color:#3AA0D2;"/-->        </strong>   </p>
+                                 <p class="row"><strong><span class="col-xs-6 left">Condition de Paiement : </span><span class="col-xs-6 text-left" t-field="doc.sale_order_id.payment_term_id.name" style="color:#3AA0D2;"/></strong>   </p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="row " style="font-size:smaller; font-family:Verdana; margin-top:20px;" >
+                            <!-- Is there a discount on at least one line? -->
+                            <t groups="sale.group_sale_layout" t-foreach="doc.line_ids" t-as="page">
+                                <table class="table table-condensed">
+                                    <thead style="background-color:#908987;;color:#FFFFFF">
+                                        <tr>
+                                            <th class="text-center"  style="width:15%;overflow:auto"><strong>Référence</strong></th>
+                                            <th class="text-center" style="width:40%;overflow:auto"><strong>Désignation</strong></th>
+                                            <th class="text-center " style="width:15%" ><strong>Qté</strong></th>
+                                            <th class="text-center" style="white-space:nowrap;width:15%"><strong>Px unitaire XOF</strong></th>
+                                            <th class="text-center" style="width:5%;overflow:auto"><strong>Rem</strong></th>
+                                            <!--th class="text-right" groups="sale.group_show_price_subtotal">Prix unit. XOF</th>-->
+                                            <th class="text-center" style="width:10%"><strong>Montant HT </strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="invoice_tbody">
+
+                                        <t t-set="product_category" t-value="[]"/>
+                                                <t t-foreach="doc.line_ids" t-as="l">
+                                                    <t t-set="product_category" t-value="product_category+[l.product_id.categ_id]"/>
+                                                </t>
+                                        <t t-foreach="set(product_category)" t-as="category">
+                                            <!--div><strong t-esc="category.name"/></div-->
+                                            <t t-foreach="doc.line_ids" t-as="l">
+                                                <t t-if="category.id==l.product_id.categ_id.id">
+                                                      <tr     style="border: thin solid #000000;" class="active border-black">
+                                                        <td style="border: thin solid #000000;background-color:#CCCCCC;width:20%;overflow:auto"></td>
+                                                        <td  class="text-center" style="font-weight: bold; border-bottom: 1px solid black; width:45%;overflow:auto;background-color:#CCCCCC;"><t t-esc="category.name"/> </td>
+                                                        <td style="border: thin solid #000000;background-color:#CCCCCC;"></td>
+                                                        <td style="border: thin solid #000000;background-color:#CCCCCC;"></td>
+                                                        <td style="border: thin solid #000000;background-color:#CCCCCC; width:5%;overflow:auto"></td>
+                                                        <td style="border: thin solid #000000;background-color:#CCCCCC;"></td>
+                                                    </tr>
+                                                 </t>
+
+                                            </t>
+                                        </t>
+
+
+
+
+                                            <!-- Lines associated -->
+                                            <t t-foreach="doc.line_ids" t-as="l">
+                                                <tr     class="border-black" style="border: thin solid #000000;width:20%;overflow:auto">
+                                                    <td class="border-black" style="border: thin solid #000000;"><span t-field="l.product_id.default_code"/></td>
+                                                    <td class="border-black" style="border: thin solid #000000; width:45%;overflow:auto"><span t-field="l.product_id.name"/></td>
+                                                    <td class="text-right"   style="border: thin solid #000000;">
+                                                        <span t-field="l.requested_qty"/>
+                                                        <span t-field="l.uom_id"  groups="product.group_uom"/>
+                                                    </td>
+                                                    <td class="text-right"  style="border: thin solid #000000;"><span t-field="l.price_unit"/></td>
+                                                    <td class="text-right"  style="border: thin solid #000000;width:5%;overflow:auto" ><span t-field="l.discount"/></td>
+                                                    <td class="text-right"  style="border: thin solid #000000;" >
+                                                        <span t-field="l.price_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+
+                                        <tr>
+                                            <td colspan="" class="text-right"><!--span t-field="l.discount"/--></td>
+                                            <td colspan="" class="text-right"><!--span t-field="l.discount"/--></td>
+                                            <div style="border: thin solid #000000;">
+                                               <td colspan="4"  style=" background-color:#CCCCCC;font-size:small;white-space:nowrap">
+                                                   <div  style="white-space:nowrap;font-size:small"><strong><span style="margin-left: 50px;"> Total HT</span>
+                                                       <span t-field="doc.amount_untaxed" class="text-right"  style="margin-left: 230px"/></strong></div>
+                                               </td>
+                                            </div>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <t t-if="page_index &lt; page_size - 1" groups="sale.group_sale_layout">
+                                    <p style="page-break-before:always;"> </p>
+                                </t>
+                             </t>
+                        </div>
+
+
+                                                <div class="row  pull-center" style="margin-top:20px;font-family:Verdana;">
+                            <div class="col-xs-2"></div>
+                            <div class="col-xs-8">
+
+                                <table class="table table-condensed"  style="margin-top:20px; border: thin solid #000000; font-size:smaller;">
+                                        <theader  style="border: thin solid #000000; font-size:small">
+                                            <tr     class="border-black"  style="font-weight:bold; border: thin solid #000000;">
+                                                <th class="border-black"  style="border: thin solid #000000;">Total HT</th>
+                                                <th class="border-black"  style="border: thin solid #000000;">TVA 18%</th>
+                                                <th class="border-black"  style="border: thin solid #000000;">Avance sur le BIC(2%)</th>
+                                                <th class="border-black"  style="background-color:#CCCCCC; border: thin solid #000000;">Net à Payer TTC</th>
+                                            </tr>
+                                        </theader>
+
+                                <tbody class="border-black "  style="border: thin solid #000000;font-size:smaller">
+                                    <tr class="border-black"  style="border: thin solid #000000;">
+                                        <td class="text-center border-black"  style="border: thin solid #000000;">
+                                            <span t-field="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                         <td class="text-center"  style="border: thin solid #000000;"><span t-field="doc.amount_tax"/></td>
+                                        <td class="text-right border-black" style="border: thin solid #000000;" >
+                                            <!--span t-field="doc.amount_total" /-->
+                                        </td>
+                                        <td class="text-right border-black" style=" border: thin solid #000000;">
+                                           <strong><span  t-field="doc.amount_total" /> </strong>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                                </div>
+                            <div class="col-xs-2"></div>
+
+                        </div>
+
+                         <div class="row" style="margin-top:20px;font-family:Verdana;">
+
+                                <div class="row "  style="font-size:smaller;">
+                                    <strong>
+
+                                           <div class="col-xs-6 text-left">Signature précédée de: </div>
+                                            <div class="col-xs-6 text-left" style="margin-left:100px" >
+                                                A - "Ok pour décaissement immédiat"<br/>
+                                                B - "Ok pour tenir compte dans le prochain approvisionnement"<br/>
+                                                C - "Ok pour émission BC"
+                                            </div>
+
+
+                                    </strong>
+                                </div>
+
+                         </div>
+
+                        <div class="row" style="margin-top:25px;font-family:Verdana;border-bottom: thin solid #000000;font-size:smaller;">
+
+                                <p class="row" style="border-bottom:">
+                                    <strong>
+                                        <div class="col-xs-3"  >
+                                           <span class="text-left">Visa Service émetteur: </span>
+                                        </div>
+
+                                        <div class="col-xs-3"  >
+                                           <span class="text-left">Visa Resp. Service: </span>
+                                        </div>
+
+                                        <div class="col-xs-3"  >
+                                           <span class="text-left">Visa Service Financier </span>
+                                        </div>
+
+                                        <div class="col-xs-3"  >
+                                           <span class="text-left">Visa Exécutive Manager</span>
+                                        </div>
+                                    </strong>
+                                </p>
+
+                         </div>
+
+
+
+                    </div><!-- -->
+                </t>
+                </t>
+            </t>
+    </template>
+</odoo>

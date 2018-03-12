@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    <menuitem id="crm_meeting_menu" name="Rendez-vous" parent="crm.menu_crm_case_phone" 
+    action="base_calendar.action_crm_meeting"/>
+    
+			 <record model="ir.ui.view" id="crm_meeting_inh_form_view">
+                <field name="name">crm.meeting.form</field>
+                <field name="model">crm.meeting</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="base_calendar.view_crm_meeting_form"/>
+                <field name="arch" type="xml">
+                        <field name="description" position="replace">
+                        	<field name="description" widget="html"/>
+                        </field>
+                </field>
+            </record>    
+    
+    </data>
+</openerp>

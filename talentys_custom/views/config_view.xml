@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+		<record model="ir.ui.view" id="chapitre_aeronef_tree_view">
+                <field name="name">purchase.exp.besoin.aeronef.chapitre.tree</field>
+                <field name="model">purchase.exp.besoin.aeronef.chapitre</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Chapitre">
+                        <field name='name'/>
+                    </tree>
+                </field>
+            </record>
+            
+              
+            <record model="ir.ui.view" id="chapitre_aeronef_form_view">
+                <field name="name">purchase.exp.besoin.aeronef.chapitre.form</field>
+                <field name="model">purchase.exp.besoin.aeronef.chapitre</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Chapitre">
+						<field name='name'/>
+                    </form>
+                </field>
+            </record>         
+       
+			<record model="ir.ui.view" id="chapitre_aeronef_search_view">
+			<field name="name">Chapitre</field>
+			<field name="model">purchase.exp.besoin.aeronef.chapitre</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Chapitre">
+					<field name='name'/>
+				</search>
+			</field>
+			</record>
+	
+			<record model="ir.actions.act_window" id="action_chapitre_aeronef_view">
+				<field name="name">Chapitre</field>
+				<field name="res_model">purchase.exp.besoin.aeronef.chapitre</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+			</record>
+    
+    			<record model="ir.ui.view" id="secteur_aeronef_tree_view">
+                <field name="name">purchase.exp.besoin.aeronef.secteur.tree</field>
+                <field name="model">purchase.exp.besoin.aeronef.secteur</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Secteur">
+                        <field name='name'/>
+                    </tree>
+                </field>
+            </record>
+            
+              
+            <record model="ir.ui.view" id="secteur_aeronef_form_view">
+                <field name="name">purchase.exp.besoin.aeronef.secteur.form</field>
+                <field name="model">purchase.exp.besoin.aeronef.secteur</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Secteur">
+						<field name='name'/>
+                    </form>
+                </field>
+            </record>         
+       
+			<record model="ir.ui.view" id="secteur_aeronef_search_view">
+			<field name="name">Secteur</field>
+			<field name="model">purchase.exp.besoin.aeronef.secteur</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Secteur">
+					<field name='name'/>
+				</search>
+			</field>
+			</record>
+	
+			<record model="ir.actions.act_window" id="action_secteur_aeronef_view">
+				<field name="name">Secteur</field>
+				<field name="res_model">purchase.exp.besoin.aeronef.secteur</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+			</record>
+		
+    
+    		<record model="ir.ui.view" id="figure_aeronef_tree_view">
+                <field name="name">purchase.exp.besoin.aeronef.figure.tree</field>
+                <field name="model">purchase.exp.besoin.aeronef.figure</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Figure">
+                        <field name='name'/>
+                    </tree>
+                </field>
+            </record>
+            
+              
+            <record model="ir.ui.view" id="figure_aeronef_form_view">
+                <field name="name">purchase.exp.besoin.aeronef.figure.form</field>
+                <field name="model">purchase.exp.besoin.aeronef.figure</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Figure">
+						<field name='name'/>
+                    </form>
+                </field>
+            </record>         
+       
+			<record model="ir.ui.view" id="figure_aeronef_search_view">
+			<field name="name">Figure</field>
+			<field name="model">purchase.exp.besoin.aeronef.figure</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Figure">
+					<field name='name'/>
+				</search>
+			</field>
+			</record>
+	
+			<record model="ir.actions.act_window" id="action_figure_aeronef_view">
+				<field name="name">Figure</field>
+				<field name="res_model">purchase.exp.besoin.aeronef.figure</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+			</record>
+		
+    		
+    		<record model="ir.ui.view" id="page_aeronef_tree_view">
+                <field name="name">purchase.exp.besoin.aeronef.page.tree</field>
+                <field name="model">purchase.exp.besoin.aeronef.page</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Page">
+                        <field name='name'/>
+                    </tree>
+                </field>
+            </record>
+            
+              
+            <record model="ir.ui.view" id="page_aeronef_form_view">
+                <field name="name">purchase.exp.besoin.aeronef.page.form</field>
+                <field name="model">purchase.exp.besoin.aeronef.page</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Page">
+						<field name='name'/>
+                    </form>
+                </field>
+            </record>         
+       
+			<record model="ir.ui.view" id="page_aeronef_search_view">
+			<field name="name">Page</field>
+			<field name="model">purchase.exp.besoin.aeronef.page</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Page">
+					<field name='name'/>
+				</search>
+			</field>
+			</record>
+	
+			<record model="ir.actions.act_window" id="action_page_aeronef_view">
+				<field name="name">Page</field>
+				<field name="res_model">purchase.exp.besoin.aeronef.page</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+			</record>
+    		
+    		
+    		<record model="ir.ui.view" id="item_aeronef_tree_view">
+                <field name="name">purchase.exp.besoin.aeronef.item.tree</field>
+                <field name="model">purchase.exp.besoin.aeronef.item</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Item">
+                        <field name='name'/>
+                    </tree>
+                </field>
+            </record>
+            
+              
+            <record model="ir.ui.view" id="item_aeronef_form_view">
+                <field name="name">purchase.exp.besoin.aeronef.item.form</field>
+                <field name="model">purchase.exp.besoin.aeronef.item</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Item">
+						<field name='name'/>
+                    </form>
+                </field>
+            </record>         
+       
+			<record model="ir.ui.view" id="item_aeronef_search_view">
+				<field name="name">Item</field>
+				<field name="model">purchase.exp.besoin.aeronef.item</field>
+				<field name="type">search</field>
+				<field name="arch" type="xml">
+					<search string="Item">
+						<field name='name'/>
+					</search>
+				</field>
+			</record>
+					
+	
+			<record model="ir.actions.act_window" id="action_item_aeronef_view">
+				<field name="name">Item</field>
+				<field name="res_model">purchase.exp.besoin.aeronef.item</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+			</record>
+    		
+    		
+    		<!-- Urgence -->
+    		<record model="ir.ui.view" id="urgence_tree_view">
+                <field name="name">purchase.exp.besoin.urgence.tree</field>
+                <field name="model">purchase.exp.besoin.urgence</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Item">
+                        <field name='name'/>
+                    </tree>
+                </field>
+            </record>
+            
+              
+            <record model="ir.ui.view" id="urgence_form_view">
+                <field name="name">purchase.exp.besoin.urgence.form</field>
+                <field name="model">purchase.exp.besoin.urgence</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Item">
+						<field name='name'/>
+                    </form>
+                </field>
+            </record>         
+       
+			<record model="ir.ui.view" id="urgence_search_view">
+				<field name="name">Urgence</field>
+				<field name="model">purchase.exp.besoin.urgence</field>
+				<field name="type">search</field>
+				<field name="arch" type="xml">
+					<search string="Item">
+						<field name='name'/>
+					</search>
+				</field>
+			</record>
+					
+	
+			<record model="ir.actions.act_window" id="action_urgence_view">
+				<field name="name">Urgence</field>
+				<field name="res_model">purchase.exp.besoin.urgence</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+			</record>
+    		
+    		
+    		<!-- MENU -->
+    		
+    		<menuitem id="exp_besoin_config_main_menu" 
+			    name="Expression de besoin" 
+			    parent="purchase.menu_purchase_config_purchase" 
+			    groups="purchase.group_purchase_manager"
+		    />
+    		
+    		
+    		<menuitem id="aeronef_config_main_menu" 
+			    name="Aeronef" 
+			    parent="exp_besoin_config_main_menu" 
+		    />
+			
+			<menuitem id="chapitre_aeronef_config_menu" 
+			    name="Chapitre" 
+			    parent="aeronef_config_main_menu" 
+			    action="action_chapitre_aeronef_view"
+		    />
+    		
+    		<menuitem id="secteur_aeronef_config_menu" 
+			    name="Secteur" 
+			    parent="aeronef_config_main_menu" 
+			    action="action_secteur_aeronef_view"
+		    />
+    
+		    <menuitem id="figure_aeronef_config_menu" 
+			    name="Figure" 
+			    parent="aeronef_config_main_menu" 
+			    action="action_figure_aeronef_view"
+		    />
+    
+		    <menuitem id="page_aeronef_config_menu" 
+			    name="Page" 
+			    parent="aeronef_config_main_menu" 
+			    action="action_page_aeronef_view"
+		    />
+    
+		    <menuitem id="item_aeronef_config_menu" 
+			    name="Item" 
+			    parent="aeronef_config_main_menu" 
+			    action="action_item_aeronef_view"
+		    />
+		    
+		    
+		    
+		    <menuitem id="besoin_config_menu" 
+			    name="Besoin" 
+			    parent="exp_besoin_config_main_menu" 
+			    groups="purchase.group_purchase_manager"
+		    />
+		    <menuitem id="urgence_config_menu" 
+			    name="Urgence" 
+			    parent="besoin_config_menu"
+			    action="action_urgence_view"
+		    />
+    </data>
+</openerp>

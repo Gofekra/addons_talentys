@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="affected_technicien" model="ir.ui.view">
+        <field name="name">affected.technicien.form.view</field>
+        <field name="model">affected.technicien</field>
+        <field name="arch" type="xml">
+            <form string="Affectation technicien">
+                <group >
+                    <field name="user_id" />
+                </group>
+                <footer>
+                    <button name="affectedTechnicien" string="Affecter" type="object"/>
+                    <button name="cancel" string="Annuler" type="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_affcted_client" model="ir.actions.act_window">
+        <field name="name">Affectation de technicien</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">affected.technicien</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="affected_technicien"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Bon pour sortie  -->
+
+        <record model="ir.ui.view" id="sortie_tree_view">
+            <field name="name">purchase.exp.sortie.tree</field>
+            <field name="model">purchase.exp.sortie</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Bon pour sortie">
+                    <field name="name"/>
+                    <field name="achat_id"/>
+                    <field name="receveur_id"/>
+                    <field name="datetime"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="bon_sortie_form_view">
+           <field name="name">purchase.exp.sortie.form</field>
+           <field name="model">purchase.exp.sortie</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <form string="Bon pour sortie">
+                    <group>
+                        <field name="name"/>
+                        <field name="datetime"/>
+                        <field name="receveur_id"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Général">
+                            <field name="det_sortie_ids" nolabel="1" colspan="4">
+                                <tree string="Détail Bon pour sortie">
+                                    <field name="product_id"/>
+                                    <field name="quantite"/>
+                                    <field name="qte_dispo"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Commentaire">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+
+               </form>
+           </field>
+        </record>
+
+        <record model="ir.ui.view" id="detail_bon_sortie_form_view">
+            <field name="name">purchase.exp.sortie.detail.form</field>
+            <field name="model">purchase.exp.sortie.detail</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Detail bon pour sortie">
+                    <field name="product_id"/>
+                    <field name="quantite"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="bon_sortie_view_search" model="ir.ui.view">
+            <field name="name">purchase.exp.sortie.view.search</field>
+            <field name="model">purchase.exp.sortie</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Bon pour sortie">
+                    <group col='15' colspan='4'>
+                        <filter string="Demande" icon="terp-stage" domain="[]" context="{'group_by':'achat_id'}"/>
+                        <separator orientation="vertical"/>
+                        <field name="name"/>
+                        <field name="datetime"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Regrouper par..." colspan="4" col="10">
+                    <filter string="Destinataire" icon="terp-personal" domain="[]" context="{'group_by':'receveur_id'}"/>
+
+                  </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_bon_sortie_view">
+            <field name="name">Bon pour sortie</field>
+            <field name="res_model">purchase.exp.sortie</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="sortie_view_menu" name="Bon pour sortie"
+        parent="besoin_achat_menu_user"
+        action="action_bon_sortie_view"
+        groups="group_manager"
+        sequence="11"/>
+    </data>
+</odoo>

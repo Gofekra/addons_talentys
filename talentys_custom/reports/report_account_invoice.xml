@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <template id="footer_accompte">
+        <table class="table">
+            <thead >
+                <tr style=" background-color:#e6e6e6; color:black;">
+                    <th style="border-bottom:1px solid black; text-align: center;">TOTAL HT</th>
+                    <th style="border-bottom:1px solid black; text-align: center;">TOTAL TTC</th>
+                    <th style="border-bottom:1px solid black; text-align: center;">Taux acompte</th>
+                    <th style="border-bottom:1px solid black; text-align: center;">Montant HT <br/>Acompte</th>
+                    <t t-if="o.type_facture == 'acompte_exo'">
+                    <th style="border-bottom:1px solid black; text-align: center;">
+                        <t t-if="o.type_facture == 'acompte_exo'">TVA non facturée</t>
+                    </th>
+                    </t>
+                    <t t-if="o.type_facture == 'acompte'">
+                     <th style="border-bottom:1px solid black; text-align: center;">
+                        Montant TVA <br/>(18%)
+                    </th>
+                    </t>
+                    <th style="border-bottom:1px solid black; text-align: center;">Montant TTC <br/>Acompte</th>
+                    <th style="border-bottom:1px solid black; text-align: center;">NET à payer</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.order_id.amount_untaxed)" /> </td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.order_id.amount_total)" /></td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="float(o.taux_acompte)"/>%</td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.amount_untaxed)" /></td>
+                    <t t-if="o.type_facture == 'acompte_exo'">
+                        <td style="border-top:1px solid black; text-align: center;">
+                            <span t-esc="o.convert_amount(o.amount_untaxed * 0.18)" />
+                        </td>
+                    </t>
+                    <t t-if="o.type_facture == 'acompte'">
+                         <td style="border-top:1px solid black; text-align: center;">
+                            <span t-esc="o.convert_amount(o.amount_tax)" />
+                        </td>
+                    </t>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.amount_total)" /></td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.amount_total)"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="footer_solde">
+        <table class="table">
+            <thead >
+                <tr style=" background-color:#e6e6e6; color:black;">
+                    <th style="border-bottom:1px solid black;text-align: center;" >TOTAL HT</th>
+                    <th style="border-bottom:1px solid black;text-align: center;" >TOTAL TTC</th>
+                    <th style="border-bottom:1px solid black;text-align: center;" >Taux  Solde</th>
+                    <th style="border-bottom:1px solid black;text-align: center;" >Montant HT <br/>Solde</th>
+                    <th style="border-bottom:1px solid black;text-align: center;" >Montant tva <br/>(18%)</th>
+                    <th style="border-bottom:1px solid black;text-align: center;" >Montant TTC <br/>Solde</th>
+                    <th style="border-bottom:1px solid black;text-align: center;" >NET à payer</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.order_id.amount_untaxed)"/> </td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.order_id.amount_total)"/></td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="float(o.taux_acompte)"/>%</td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.amount_untaxed)"/></td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.amount_tax)"/></td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.amount_total)"/></td>
+                    <td style="border-top:1px solid black;text-align: center;"><span t-esc="o.convert_amount(o.amount_total)"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="footer_normal">
+        <table class="table">
+            <thead >
+                <tr style=" background-color:#e6e6e6; color:black;">
+                    <th style="border-bottom:1px solid black; " class="text-center">Sous Total</th>
+                    <th style="border-bottom:1px solid black; " class="text-center">Montant Remise</th>
+                    <th style="border-bottom:1px solid black; " class="text-center">Montant tva (18%)</th>
+                    <th style="border-bottom:1px solid black; " class="text-center">Acompte</th>
+                    <th style="border-bottom:1px solid black; " class="text-center">NET à payer TTC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center" style="border-top:1px solid black;"><span t-esc="o.convert_amount(o.amount_untaxed)"/> </td>
+                    <td class="text-center" style="border-top:1px solid black;"><span t-esc="o.convert_amount(o.total_discount)"/></td>
+                    <td class="text-center" style="border-top:1px solid black;"><span t-esc="o.convert_amount(o.amount_tax)"/></td>
+                    <td class="text-center" style="border-top:1px solid black;"><span t-esc="o.convert_amount(o.amount_total)"/></td>
+                    <td class="text-center" style="border-top:1px solid black;"><span  t-esc="o.convert_amount(o.amount_total)"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="footer_exonere_taxe">
+        <table class="table">
+            <thead >
+                <tr style=" background-color:#e6e6e6; color:black;">
+                    <th style="border-bottom:1px solid black; " class="text-center">Sous Total (HT)</th>
+                    <th style="border-bottom:1px solid black; " class="text-center">Montant Remise</th>
+                    <th style="border-bottom:1px solid black; " class="text-center">TVA non facturée</th>
+                    <th style="border-bottom:1px solid black; " class="text-center">Acompte</th>
+                    <th style="border-bottom:1px solid black; " class="text-center">Net à Payer (TTC)</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td class="text-center" style="border-top:1px solid black;"><span t-esc="o.convert_amount(o.amount_untaxed)"/> </td>
+                    <td class="text-center" style="border-top:1px solid black;"><span t-esc="o.convert_amount(o.total_discount)"/></td>
+                    <td class="text-center" style="border-top:1px solid black;">
+                        <t t-if="o.type_facture == 'exoneration'"><span t-esc="o.convert_amount(o.amount_tax)"/></t>
+                        <t t-if="o.type_facture == 'solde_exo'"><span t-esc="o.convert_amount(o.amount_untaxed * 0.18)"/></t>
+                    </td>
+                    <td class="text-center" style="border-top:1px solid black;"><span t-esc="o.convert_amount(o.total_acompte)"/></td>
+                    <td class="text-center" style="border-top:1px solid black;">
+                        <t t-if="o.type_facture == 'exoneration'"><span t-esc="o.convert_amount(o.amount_untaxed)"/></t>
+                        <t t-if="o.type_facture == 'solde_exo'"><span t-esc="o.convert_amount(o.amount_total)"/></t></td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="body_normal">
+        <tr t-foreach="o.invoice_line_ids" t-as="l" >
+            <td style="width:350px;"><span t-field="l.name"/></td>
+            <td class="hidden"><span t-field="l.origin"/></td>
+            <td class="text-right">
+                <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/>
+            </td>
+            <td class="text-right" style="width:25px;">
+                <span t-field="l.quantity"/>
+                <span t-field="l.uom_id"  groups="product.group_uom"/>
+            </td>
+            <td class="text-right">
+                <span t-field="l.price_unit"/>
+            </td>
+            <td class="text-right">
+                <span t-field="l.discount"/>
+            </td>
+
+            <td class="text-right">
+                <span t-field="l.price_subtotal"/>
+            </td>
+        </tr>
+    </template>
+
+    <template id="report_account_invoice_custom">
+        <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+			<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+            <div class="header" style="height: 100px;">
+
+
+			</div>
+			<div class="page" >
+                <style type="text/css">
+                    div {font-size:13px; font-family: 'Times New Roman';}
+                    .row {margin: -2px -2px; padding: -2px -2px;}
+                    th {margin: none none; padding-top: none none;}
+                    tr {margin: -2px -2px; padding: -2px -2px;}
+                    td {margin: -2px -2px; padding: -2px -2px;}
+				</style>
+                <div class="row">
+                    <div class="col-xs-5 pull-left">
+                        <br/><br/><br/><br/>
+                        <h5>
+                            <strong>
+                            <span t-if="o.type_facture in ('normal','solde_exo','exoneration') and (o.state in ('open', 'paid', 'draft'))">Facture</span>
+                            <span t-if="o.type_facture =='avoir' and (o.state in ('open', 'paid', 'draft'))">Facture d'avoir</span>
+                            <span t-if="o.type_facture in ('solde','solde2')  and (o.state in ('open', 'paid', 'draft'))">Facture de solde</span>
+                            <span t-if="o.type_facture in ('acompte_exo','acompte') and (o.state in ('open', 'paid', 'draft'))">Facture d'acompte</span>
+                            <span t-field="o.number"/>
+                            </strong>
+                        </h5>
+                    </div>
+                    <div class="col-xs-offset-2 col-xs-5 pull-right" style="text-align: left;" >
+                        <strong><span t-field="o.partner_id"/></strong>
+                        <address t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;,], &quot;no_marker&quot;: True}"/>
+                        <span t-if="o.partner_id.vat">TIN: <span t-field="o.partner_id.vat"/></span>
+                        Tél:<span t-field="o.partner_id.phone"/><br/>
+                        <t t-if="o.partner_id.fax">Fax:<span t-field="o.partner_id.fax"/><br/></t>
+                        <t t-if="o.partner_id.compte_contribuable">CC:<span t-field="o.partner_id.compte_contribuable"/></t>
+                    </div>
+                </div>
+                <br/>
+
+                <!-- Is there a discount on at least one line? -->
+                <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
+
+                <div class="row">
+                    <table class="table">
+                        <thead >
+                            <tr style=" background-color:#e6e6e6; color:black;">
+                                <th style="border-bottom:1px solid black;" class="text-center">Référence</th>
+                                <th style="border-bottom:1px solid black;" class="text-center">Date de facture</th>
+                                <th style="border-bottom:1px solid black;" class="text-center">Moyen de paiement</th>
+                                <th style="border-bottom:1px solid black;" class="text-center">Ref Partenaire</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr>
+                                <td class="text-center" style="border-top:1px solid black;"><span t-field="o.order_id"/> </td>
+                                <td class="text-center" style="border-top:1px solid black;"><span t-field="o.date_invoice"/></td>
+                                <td class="text-center" style="border-top:1px solid black;"><span t-field="o.mode_paiement"/></td>
+                                <td class="text-center" style="border-top:1px solid black;"><span t-field="o.partner_id.ref"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="table table-condensed" >
+                        <thead >
+                            <tr style=" background-color:#e6e6e6; color:black;">
+                                <th style="with:350px"><strong>Description</strong></th>
+                                <th class="text-right" ><strong>Taxes</strong></th>
+                                <th class="text-right" >Quantité</th>
+                                <th class="text-right" ><strong>Prix unitaire</strong></th>
+                                <th class="text-right" ><strong>Rem.(%)</strong></th>
+                                <th class="text-right" ><strong>Montant (CFA)</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <t t-if="o.type_facture in ('acompte_exo','acompte')">
+                                <t t-foreach="o.order_id.order_line" t-as="d">
+                                    <tr>
+                                        <td style="width:350px;"><span t-field="d.name"/></td>
+                                        <td  class="text-right"><span t-esc="', '.join(map(lambda x: (x.description or x.name), d.tax_id))"/></td>
+                                        <td class="text-right" ><span t-field="d.product_uom_qty"/></td>
+                                        <td class="text-right" ><span t-field="d.price_unit"/></td>
+                                        <td class="text-right" ><span t-field="d.discount"/></td>
+                                        <td class="text-right" ><span t-field="d.price_subtotal"/></td>
+                                    </tr>
+                                </t>
+                            </t>
+                            <t t-if="o.type_facture in ('solde','solde2','exoneration')">
+                                <t t-foreach="o.order_id.order_line" t-as="d">
+                                    <tr>
+                                        <td style="width:350px;"><span t-field="d.name"/></td>
+                                        <td  class="text-right"><span t-esc="', '.join(map(lambda x: (x.description or x.name), d.tax_id))"/></td>
+                                        <td class="text-right" ><span t-field="d.product_uom_qty"/></td>
+                                        <td class="text-right" ><span t-field="d.price_unit"/></td>
+                                        <td class="text-right" ><span t-field="d.discount"/></td>
+                                        <td class="text-right" ><span t-field="d.price_subtotal"/></td>
+                                    </tr>
+                                </t>
+                            </t>
+                            <t t-if="o.type_facture in ('normal','solde_exo','avoir','solde','solde2')">
+                                <t t-call="talentys_custom.body_normal"/>
+                            </t>
+                        </tbody>
+                    </table>
+                    <t t-if="o.type_facture in ('acompte_exo','acompte')">
+                        <t t-call="talentys_custom.footer_accompte"/>
+                    </t>
+                    <t t-if="o.type_facture in ('normal','avoir')">
+                        <t t-call="talentys_custom.footer_normal"/>
+                    </t>
+                    <t t-if="o.type_facture in ('exoneration','solde_exo')">
+                        <t t-call="talentys_custom.footer_exonere_taxe"/>
+                    </t>
+                    <t t-if="o.type_facture in ('solde','solde2')">
+                        <t t-call="talentys_custom.footer_solde"/>
+                    </t>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <strong><span>Arrèté la présente Facture à la somme de : </span>&#032;<span ><span t-field="o.amount_letter"/></span></strong>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <strong>Conditions de paiement:</strong><br/>
+                            <span t-field="o.payment_term_id.name"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-offset-7">
+                            <strong><p class="text-center">Auguste DIOP</p></strong>
+                            <p class="text-center">Directeur Général</p>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-3 pull-left">
+                        <p>Parité FCFA / EURO :</p>
+                    </div>
+                    <div class="col-xs-9 pull-right">
+                        <p>Nos prix sont établis pour une parité de FRANC CFA de 1 Euro = 655,957 F CFA<br/>
+        Toute modification de cette parité entrainera de facto le réajustement du prix en F CFA</p>
+                    </div>
+                </div>
+			</div>
+        </t>
+    </t>
+    </template>
+</data>
+</odoo>
+

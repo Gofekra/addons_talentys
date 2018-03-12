@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_saleorder_document_talentys_bf">
+    <t t-call="report.external_layout">
+        <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+        <div class="page">
+            <style type="text/css">
+
+                .sale_tbody td {
+                    border: 0.5px solid black;
+                    padding: 5px;
+                }
+
+                .sale_line th {
+                    padding: 5px;
+                }
+
+                .amount_table td{
+                    border: 0.5 solid black;
+                    padding: 5px;
+                }
+
+                .summary td{
+                    padding: 5px;
+                }
+            </style>
+            <div class="oe_structure"/>
+            <div class="row">
+                <div class="col-xs-2">Date :</div>
+                <div class="col-xs-4"><strong><span t-field="doc.date_order"/></strong></div>
+                <div class="col-xs-2">Client final :</div>
+                <div class="col-xs-4"> <strong><span t-field="doc.partner_id"/></strong></div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <span t-if="doc.state not in ['draft','sent']">Commande N° </span>
+                    <span t-if="doc.state in ['draft','sent']">Devis N°  </span>
+                </div>
+                <div class="col-xs-4"><strong><span t-field="doc.name"/></strong></div>
+                <div class="col-xs-2">Pays : </div>
+                <div class="col-xs-4"><strong><span t-field="doc.partner_id.country_id"/></strong></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">Suivi par : </div>
+                <div class="col-xs-4"><strong><span t-field="doc.user_id"/></strong></div>
+                <div class="col-xs-2">Tél : </div>
+                <div class="col-xs-4"><strong><span t-field="doc.partner_id.phone"/></strong></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"></div>
+                <div class="col-xs-2">Addresse : </div>
+                <div class="col-xs-4"><strong><span t-field="doc.partner_id.street"/></strong></div>
+            </div>
+            <!-- Is there a discount on at least one line? -->
+            <!--<t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>-->
+            <br/>
+            <br/>
+            <br/>
+            <table class="sale_line" style="font-size:12px;width:100%;">
+                <thead>
+                    <tr style="background-color:#848484;">
+                        <th class="text-center">Part number</th>
+                        <th class="text-center">Designation</th>
+                        <th class="text-center">Qté</th>
+                        <th class="text-center">Prix Unit. XOF</th>
+                        <th class="text-center" groups="sale.group_discount_per_so_line">Rem.(%)</th>
+                        <th class="text-center" groups="sale.group_show_price_subtotal">Mt Total XOF</th>
+                    </tr>
+               </thead>
+                <tbody class="sale_tbody">
+                    <t t-foreach="doc.order_lines_layouted()" t-as="page">
+                        <t t-foreach="page" t-as="layout_category">
+
+                            <tr>
+                                <td></td>
+                                <td style="font-weight: bold; background-color:#BDBDBD">
+                                    <t t-esc="layout_category['name']"/>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <!-- Lines associated -->
+                            <t t-foreach="layout_category['lines']" t-as="l">
+                                <tr>
+                                    <td><span t-field="l.product_id.default_code"/></td>
+                                    <td><span t-field="l.product_id.name"/></td>
+                                    <td class="text-right"><span t-field="l.product_uom_qty"/></td>
+                                    <td class="text-right"><span t-field="l.price_unit" /></td>
+                                    <td class="text-right" groups="sale.group_discount_per_so_line">
+                                        <span t-field="l.discount"/>
+                                    </td>
+                                    <td class="text-right" groups="sale.group_show_price_subtotal"><span t-field="l.price_subtotal"
+                                            t-options='{"widget": "monetary"}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </t>
+                    <tr>
+                        <td colspan="3" style="border-style:none;"></td>
+                        <td colspan="2" class="active" style="background-color:#BDBDBD; text-align:center;">Total HT</td>
+                        <td class="active text-right" style="background-color:#BDBDBD; text-align:center;">
+                            <span t-field="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+
+            <div class="row" name="total" align="center" style="font-size:12px">
+                <div class="col-xs-offset-2 col-xs-8 pull-center">
+                    <table class="amount_table" style="font-size:12px;width:100%;">
+                        <tr class="border-black">
+                            <td class="text-center"><strong>Montant HT</strong></td>
+                            <td class="text-center"><strong>TVA 18%</strong></td>
+                            <td class="text-center"><strong>Avance sur le BIC (2%)</strong></td>
+                            <td class="text-center active"><strong>Montant TTC</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span t-field="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                            </td>
+                            <td class="text-center"><span t-esc="doc._get_tax_amount_by_type('Taxes')"/></td>
+                            <td class="text-center"><span t-esc="doc._get_tax_amount_by_type('BIC')"/></td>
+                            <td class="text-center" style="background-color:#BDBDBD; text-align:center;">
+                                <strong><span t-field="doc.amount_total"
+                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                </strong>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="row" style="font-size:12px">
+                <div class="col-xs-12">
+                    <strong>Le présent devis est arrêté au montant de <span t-field="doc.amount_total_letter"/></strong>
+                </div>
+            </div>
+            <br/>
+            <div  style="font-size:12px">
+                <div class="pull-left" style="border: 1px solid black">
+                    <table class="summary">
+                        <thead>
+                            <tr>
+                                <th colspan="2" style="background-color:#BDBDBD;text-align:center;width:350px;border:1px solid black;padding:5px">
+                                    <strong>CONDITIONS DE VENTE</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tboyd>
+                            <tr>
+                                <td><strong>Délai de livraison:</strong></td>
+                                <td><span t-field="doc.note" /></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Méthode de paiement :</strong></td>
+                                <td>Chèque ou virement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Conditions de paiement:</strong></td>
+                                <td><span t-field="doc.payment_term_id"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lieu de livraison :</strong></td>
+                                <td><span t-field="doc.partner_shipping_id"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Validité de l'offre :</strong></td>
+                                <td>30 jours</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Garantie constructeur :</strong></td>
+                                <td>1 an retour atelier</td>
+                            </tr>
+                        </tboyd>
+                    </table>
+                </div>
+                <div class="pull-right" style="border: 1px solid black;width:280px;">
+                    <div align="center">
+                        Bon pour accord ferme et définitif
+                        <br/>
+                    </div>
+                    <div style="padding:5px; margin: 5px">
+                        <strong>Nom :</strong><br/><br/>
+                        <strong>Cachet + signature</strong><br/><br/>
+
+                    </div>
+                </div>
+            </div>
+            <div class="oe_structure"/>
+        </div>
+    </t>
+</template>
+
+
+<template id="report_saleorder_bf">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="talentys_custom.report_saleorder_document_talentys_bf" t-lang="doc.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+</odoo>

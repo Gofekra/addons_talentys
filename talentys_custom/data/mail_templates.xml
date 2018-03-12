@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- gestion des masques de mails pour la gestion des expressions de besoin -->
+        <record id="besoin_draft_notif" model="mail.template">
+            <field name="name">Création d'une expression de besoin</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Création de l'expression de besoin : ${(object.name or '')|safe }</field>
+            <field name="model_id" ref="model_purchase_exp_besoin"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.user_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>Votre expression de besoin a été mise en brouillon.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            Cordialement.
+            ]]></field>
+        </record>
+
+        <record id="besoin_ret_achat_notif" model="mail.template">
+            <field name="name">Retour quotation fournisseur</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Retour quotation de l'expression de besoin : ${(object.name or '')|safe }</field>
+            <field name="model_id" ref="model_purchase_exp_besoin"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.user_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>Votre expression de besoin a été retournée par le responsable achat suite au retour du fournisseur.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            Cordialement.
+            ]]></field>
+        </record>
+
+        <record id="besoin_achat_notif" model="mail.template">
+            <field name="name">Responsable Achats</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.achat_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Expression de besoin ${(object.name or '')|safe} : Demande de cotation transmise par ${(object.user_id.name or '')|safe }</field>
+            <field name="model_id" ref="model_purchase_exp_besoin"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.achat_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>Veuillez adresser une demande de cotation au(x) fournisseur(s) conformément à l'expression de besoin que vous retrouverez en cliquant sur le lien ci-dessous.</p>
+            <br/>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <br/>
+            Cordialement.
+            ]]></field>
+        </record>
+
+        <record id="besoin_retour_fournisseur_notif" model="mail.template">
+            <field name="name">Expression de besoin : Retour(s) fournisseur(s)</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Expression de besoin ${(object.name or '')|safe} : Retour(s) fournisseur(s)</field>
+            <field name="model_id" ref="model_purchase_exp_besoin"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.user_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>Je vous prie de bien vouloir trouver le(s) retour(s) fournisseur(s) de l'expression de besoin ci-dessous.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+        <record id="request_purchase_draft" model="mail.template">
+            <field name="name">Expression de besoin:Notification pour DA mise en brouillon</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject"></field>
+            <field name="model_id" ref="model_purchase_exp_besoin"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>Bonjour ${(object.user_id.name or '')|safe}</p>
+                <br/>
+                <br/>
+                <p>La demande d'achat à été mise en brouillon</p>
+                <br/>
+                <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+                <br/>
+                <p>Cordialement</p>
+            ]]></field>
+        </record>
+
+        <record id="affectedTechnicien" model="mail.template">
+            <field name="name">Expression de besoin:Traitement de besoin</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject"></field>
+            <field name="model_id" ref="model_affected_technicien"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>Bonjour ${(object.user_id.name or '')|safe}</p>
+                <br/>
+                <br/>
+                <p>Votre deamnde est en cours de traitement</p>
+                <br/>
+                <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+                <br/>
+                <p>Cordialement</p>
+            ]]></field>
+        </record>
+
+        <record id="besoin_service_notif" model="mail.template">
+            <field name="name">Expression de besoin : Chef de service</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <!--<field name="email_to">${(object.demandeur_id.user_id.service_id.manager_id.user_id.login or '')|safe}</field>-->
+            <field name="email_to">${(object.chief_service_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Expression de besoin ${(object.name or '')|safe} : Validation de spécifications techniques')</field>
+            <field name="model_id" ref="model_purchase_exp_besoin"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.chief_service_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>Merci de bien vouloir traiter l'expression de besoin ci-dessous.</p>
+            <br/>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+        <record id="besoin_department_notif" model="mail.template">
+            <field name="name">Expression de besoin : Department de service</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.department_id.manager_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Expression de besoin ${(object.name or '')|safe} : Validation de spécifications techniques')</field>
+            <field name="model_id" ref="model_purchase_exp_besoin"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.chief_department_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>Merci de bien vouloir valider les spécifications techniques apportées à l'expression de besoin ci-dessous.</p>
+            <br/>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+        <record id="besoin_demandeur_notif" model="mail.template">
+            <field name="name">Expression de besoin : Department de service</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Expression de besoin ${(object.name or '')|safe} : Validation de spécifications techniques')</field>
+            <field name="model_id" ref="model_purchase_exp_besoin"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.user_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>L'expressin de besoin dont la référence est dans l'objet a été validé et est à votre niveau.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+        <!-- gestion des notifications demandes d'achats -->
+        <record id="request_draft_notif" model="mail.template">
+            <field name="name">Création d'une demande d'achat</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Création de la demande d'achat: ${(object.name or '')|safe }</field>
+            <field name="model_id" ref="model_purchase_exp_achat"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.user_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>Votre demande d'achat a été mise en brouillon.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            Cordialement.
+            ]]></field>
+        </record>
+
+        <record id="request_service_notif" model="mail.template">
+            <field name="name">Notification Chef de service</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.service_id.manager_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Validation demande d'achat ${(object.name or '')|safe}</field>
+            <field name="model_id" ref="model_purchase_exp_achat"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.demandeur_id.service_id.manager_id.user_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>La demande d'achat qui a pour référence ${(object.name or '')|safe} est à votre niveau de validation.</p>
+            <br/>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            Cordialement.
+            ]]></field>
+        </record>
+
+        <record id="request_department_notif" model="mail.template">
+            <field name="name">Notification chef de departement</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.demandeur_id.department_id.manager_id.user_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Demande d'achat ${(object.name or '')|safe} : Demande d'achat transmise par ${(user.name or '')|safe }</field>
+            <field name="model_id" ref="model_purchase_exp_achat"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.chief_department_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>La demande d'achat N° ${(object.name or '')|safe} est à votre niveau de validation.</p>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <br/>
+            Cordialement.
+            ]]></field>
+        </record>
+
+        <record id="request_finance_notif" model="mail.template">
+            <field name="name">Notification Finance</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.chief_finance_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Validation demande d'achat ${(object.name or '')|safe} </field>
+            <field name="model_id" ref="model_purchase_exp_achat"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.chief_finance_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>La demande d'achat N° ${(object.name or '')|safe} est à votre niveau de validation.</p>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+        <record id="request_dg_notif" model="mail.template">
+            <field name="name">Notification DG</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.dg_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Validation demande d'achat ${(object.name or '')|safe}</field>
+            <field name="model_id" ref="model_purchase_exp_achat"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.dg_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>La demande d'achat N° ${(object.name or '')|safe} est à votre niveau de validation.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+        <record id="request_retour_finance_notif" model="mail.template">
+            <field name="name">Demande d'achat : Retour DG</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.chief_finance_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Demande d'achat ${(object.name or '')|safe}</field>
+            <field name="model_id" ref="model_purchase_exp_achat"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.chief_finance_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>La demande d'achat N° ${(object.name or '')|safe} est à votre niveau de validation.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+        <record id="request_cashier_notif" model="mail.template">
+            <field name="name">Notification caissier</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.cashier_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Validation demande d'achat ${(object.name or '')|safe}</field>
+            <field name="model_id" ref="model_purchase_exp_achat"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.cashier_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>La demande d'achat N° ${(object.name or '')|safe} est à votre niveau.</p>
+            <p>Veuillez proceder au paiement des bons commandes liées à cette demande d'achat.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+        <record id="request_achat_notif" model="mail.template">
+            <field name="name">Notification Responsable achat</field>
+            <field name="email_from">openerp@talentys.ci</field>
+            <field name="email_to">${(object.achat_id.login or '')|safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Validation demande d'achat ${(object.name or '')|safe}</field>
+            <field name="model_id" ref="model_purchase_exp_achat"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${user.lang}</field>
+            <field name="body_html"><![CDATA[
+            <p>Bonjour ${(object.achat_id.name or '')|safe}</p>
+            <br/>
+            <br/>
+            <p>La demande d'achat N° ${(object.name or '')|safe} est à votre niveau.</p>
+            <p>Veuillez proceder au paiement des bons commandes liées à cette demande d'achat.</p>
+            <br/>
+            <p><a href='${(object.url_link or '')|safe}'>Cliquez ici</a></p>
+            <br/>
+            <p>Cordialement.</p>
+            ]]></field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+    
+    	<record model="ir.actions.act_window" id="act_exp_besoin_list">
+			<field name="res_model">purchase.exp.besoin</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="act_exp_achat_list">
+			<field name="res_model">purchase.exp.achat</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="act_exp_besoin_graph">
+			<field name="res_model">purchase.exp.besoin</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">graph</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="act_exp_achat_graph">
+			<field name="res_model">purchase.exp.achat</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">graph</field>
+		</record>
+    	
+    	<record model="ir.ui.view" id="board_requisition_form">
+			<field name="name">Besoin Dashboard Form</field>
+			<field name="model">board.board</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Tableau de bord">
+					<hpaned>
+						<child1>	
+							<action
+								string="Besoin"
+								name="%(act_exp_besoin_list)d"
+								colspan="4"
+								/>
+							<action
+								string="Ordre d'chat"
+								name="%(act_exp_achat_list)d"
+								colspan="4"
+								/>
+						</child1>
+						<child2>
+							<action
+								string="Besoin"
+								name="%(act_exp_besoin_graph)d"
+								colspan="4"/>	
+							<action
+								string="Ordre d'achat"
+								name="%(act_exp_achat_graph)d"
+								colspan="4"/>					
+						</child2>
+					</hpaned>
+				</form>
+			</field>
+		</record>
+    	
+    	<record model="ir.actions.act_window" id="open_board_requisition">
+			<field name="name">Besoin Dashboard</field>
+			<field name="res_model">board.board</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="usage">menu</field>
+			<field name="view_id" ref="board_requisition_form"/>
+		</record>
+    	
+    	
+    	<menuitem id="requisition_board_menu" 
+		    name="Tableau de bord" 
+		    parent="requisition_board_main_menu" 
+		    action="open_board_requisition"
+		    icon="terp-graph"
+    	/>
+    	
+    	<!--  <menuitem icon="terp-purchase" id="base.menu_purchase_root" action="open_board_requisition" name="Purchases"/>-->
+    	
+    </data>
+</openerp>

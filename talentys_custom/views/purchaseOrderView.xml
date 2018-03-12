@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="talentys_custom_purchase_order_form_custom_view" model="ir.ui.view">
+        <field name="name">purchase.order.inherit.form.view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="discount"/>
+                <field name="amount_discount" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_form_besoin_action" model="ir.actions.act_window">
+        <field name="name">Commandes fournisseurs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+    </record>
+</odoo>

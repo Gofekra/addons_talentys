@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+   <report  id="bon_pour_sortie_report" string="Bon pour sortie" model="purchase.exp.sortie"
+   				name="sortie.report" rml="talentys_custom/report/bon_pour_sortie.rml" />
+    
+    <report  id="expression_besoin_report" string="Expression de besoin" model="purchase.exp.besoin"
+   				name="besoin.report" rml="talentys_custom/report/expression_besoin.rml" />
+    </data>
+</openerp>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_import_chart_account_wizrd" model="ir.ui.view">
+            <field name="name">account.import.chart.account.form</field>
+            <field name="model">account.import.chart.account</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group col="4">
+                        <field name="company_id"/>
+                        <field name="data_file"/>
+                    </group>
+                    <notebook>
+                        <page string="Feuilles" name="sheets">
+                            <field name="sheet_ids">
+                                <tree editable="top">
+                                    <field name="name" readonly="1"/>
+                                    <field name="active"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="action_import" string="Impoter le plan comptable" type="object" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_chart_account_wizrd" model="ir.actions.act_window">
+            <field name="name">Import du plan comptable</field>
+            <field name="res_model">account.import.chart.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Gestion des importation comptable" id="import_account_menu_id" parent="account.menu_finance"/>
+
+        <menuitem name="Importer le plan comptable" id="import_chart_account_menu_id" parent="import_account_menu_id"
+                action="action_import_chart_account_wizrd"/>
+    </data>
+</odoo>

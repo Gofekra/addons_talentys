@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data >
+
+        <!--Department-->
+        <record id="dep_general" model="hr.department">
+            <field name="name">Direction générale</field>
+            <field name="code">DG</field>
+            <field name="type">department</field>
+        </record>
+
+        <record id="dep_finance" model="hr.department">
+            <field name="name">Département Finance</field>
+            <field name="code">FIN</field>
+            <field name="parent_id" ref="talentys_custom.dep_general"/>
+            <field name="type">department</field>
+        </record>
+
+        <record id="dep_infor" model="hr.department">
+            <field name="name">Département Information</field>
+            <field name="code">INFO</field>
+            <field name="parent_id" ref="talentys_custom.dep_general"/>
+            <field name="type">department</field>
+        </record>
+
+        <record id="dep_support" model="hr.department">
+            <field name="name">Service Support</field>
+            <field name="code">SUPP</field>
+            <field name="parent_id" ref="talentys_custom.dep_infor"/>
+            <field name="type">service</field>
+        </record>
+
+        <record id="dep_projet" model="hr.department">
+            <field name="name">Service Projet</field>
+            <field name="code">PROJ</field>
+            <field name="parent_id" ref="talentys_custom.dep_infor"/>
+            <field name="type">service</field>
+        </record>
+
+        <record id="serv_achat" model="hr.department">
+            <field name="name">Service Achat</field>
+            <field name="code">ACH</field>
+            <field name="parent_id" ref="talentys_custom.dep_finance"/>
+            <field name="type">service</field>
+        </record>
+
+        <record id="dep_rh" model="hr.department">
+            <field name="name">Service des RH</field>
+            <field name="code">HR</field>
+            <field name="parent_id" ref="talentys_custom.dep_finance"/>
+            <field name="type">service</field>
+        </record>
+    </data>
+</odoo>

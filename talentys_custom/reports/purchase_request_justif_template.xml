@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_purchase_purchase_request_justif">
+        <t t-call="report.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="o" t-value="o.with_context({'lang':user.lang})"/>
+                <div class="page" style="font-size: 11px">
+                    <br/>
+                    <br/>
+                    <div class="pull-center" align="center" style="font-size: 20px">
+                        <strong>Justification de demande d'achat</strong>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div >
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Pour :</th>
+                                    <th></th>
+                                    <th>Par :</th>
+                                    <th>En la personne de :</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span t-field="o.demandeur_id.parent_id.department_id.name"/></td>
+                                    <td><span t-field="o.demandeur_id.parent_id.user_id.name"/></td>
+                                    <td><span t-field="o.demandeur_id.department_id.name"/></td>
+                                    <td><span t-field="o.user_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td>DAF</td>
+                                    <td><span t-field="o.chief_finance_id.name"/></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DG</td>
+                                    <td><span t-field="o.dg_id.name"/></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Date</td>
+                                    <td colspan="3" class="pull-center"><span t-field="o.date"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Projet</td>
+                                    <td colspan="3" class="pull-center"><span t-field="o.projet"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <table >
+                            <tr>
+                                <td><span t-field="o.notes"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

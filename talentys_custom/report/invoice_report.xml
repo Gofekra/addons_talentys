@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    		<report
+	            id="invoice_mask_report"
+	            model="account.invoice"        
+	            name="masque.facture"
+	            rml="talentys_custom/account/report/factures.rml"
+	            string="Masque factures" 
+			/>
+    
+    </data>
+</openerp>

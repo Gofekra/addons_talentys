@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+   
+   <report  id="da_report" string="Demande d'achat" model="purchase.exp.achat"
+   				name="da.report" rml="talentys_custom/report/demande_achat_talentys.rml" 
+   				groups="talentys_custom.group_achat,talentys_custom.group_departement,talentys_custom.group_finance,talentys_custom.group_direction"/>
+
+<report  id="da_report_justif" string="Justification de DA" model="purchase.exp.achat"
+   				name="da.justif.report" rml="talentys_custom/report/justification_da.rml" 
+   				groups="talentys_custom.group_achat,talentys_custom.group_departement,talentys_custom.group_finance,talentys_custom.group_direction"/>
+   
+       
+    </data>
+</openerp>

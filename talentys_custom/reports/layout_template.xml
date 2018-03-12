@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report.external_layout_header" >
+        <div class="header">
+            <style type="text/css">
+                table { font-size: 9px; }
+            </style>
+            <div class="row">
+                <table>
+                    <tr>
+                        <td class="">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"  style="height: 120px; width: 250px;" />
+                        </td>
+                        <td width="25%"> Cocody - II PLATEAUX LES VALLONS<br/>RUE J 81 SOPIM VILLA N° 3<br/>25 BP 1180 ABIDJAN 25</td>
+                        <td width="15%"> Tél : +225 22 417 268<br/><span style="margin-left: 2.5em">+225 22 417 269</span><br/>Tél : +225 22 417 169</td>
+                        <td width="25%" >RCM:2007-B-4685/CC:0732179 N<br/>S.A au Capital de 100.000.000 FCFA<br/>BACI CI034 01001 011354050003 38</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row" style="display: none">
+                <div class="col-xs-3">
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+                </div>
+                <div class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/>
+            </div>
+            <div class="row zero_min_height" style="display: none">
+                <div class="col-xs-12">
+                    <div style="border-bottom: 1px solid black;"></div>
+                </div>
+            </div>
+            <div class="row" style="display: none">
+                <div class="col-xs-6" name="company_address">
+                    <span t-field="company.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                        style="border-bottom: 1px solid black; display:inline-block;"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="report.external_layout_footer">
+        <div class="footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <img t-if="company.pied_page" t-att-src="'data:image/png;base64,%s' % company.pied_page" style="width: 100%;"/>
+            </div>
+            <div class="text-center" style="border-top: 1px solid black; display: none" >
+                <ul t-if="not company.custom_footer" class="list-inline">
+                    <t t-set="company" t-value="company.sudo()"/>
+                    <li t-if="company.phone">Phone: <span t-field="company.phone"/></li>
+
+                    <li t-if="company.fax and company.phone">&amp;bull;</li>
+                    <li t-if="company.fax">Fax: <span t-field="company.fax"/></li>
+
+                    <li t-if="company.email and company.fax or company.email and company.phone">&amp;bull;</li>
+                    <li t-if="company.email">Email: <span t-field="company.email"/></li>
+
+                    <li t-if="company.website and company.email or company.website and company.fax or company.website and company.phone">&amp;bull;</li>
+                    <li t-if="company.website">Website: <span t-field="company.website"/></li>
+                </ul>
+
+                <ul t-if="not company.custom_footer" class="list-inline" name="financial_infos">
+                    <li t-if="company.vat">TIN: <span t-field="company.vat"/></li>
+                </ul>
+
+                <t t-if="company.custom_footer">
+                    <span t-raw="company.rml_footer"/>
+                </t>
+
+                <ul class="list-inline">
+                    <li>Page:</li>
+                    <li><span class="page"/></li>
+                    <li>/</li>
+                    <li><span class="topage"/></li>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<!-- les convetions -->
+    	  <record model="ir.ui.view" id="account_other_charge_tree_form">
+                <field name="name">account.other.charge.tree</field>
+                <field name="model">account.other.charge</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Frais suppémentaires">
+                        <field name="name"/>
+                        <field name="type"/>
+                        <field name="account_account_id"/>
+                    </tree>
+                </field>
+            </record>
+            
+            
+    	    <record model="ir.ui.view" id="account_other_charge_form_view">
+                <field name="name">account.other.charge.form</field>
+                <field name="model">account.other.charge</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Frais supplémentaires">
+                    	<sheet>
+                    		<group >
+                    			<field name="name"/>
+                   				<field name='active'/>
+                   				<field name="condition"/>
+                   				<field name="account_account_id"/>
+                   				<field name='type'/>
+                   				<field name='pourcentage' attrs="{'invisible': [('type', '!=', 'pourcentage')], 'required': [('type', '=', 'pourcentage')]}"/>
+                   				<field name='amount_fixed' attrs="{'invisible': [('type', '!=', 'fixe')], 'required': [('type', '=', 'fixe')]}"/>
+                   				<field name='code_python' attrs="{'invisible': [('type', '!=', 'code_python')], 'required': [('type', '=', 'code_python')]}"/>
+                    		</group>
+                    	</sheet>
+                    </form>
+                </field>
+            </record>
+            
+            <record id="open_view_account_other_charge_tree" model="ir.actions.act_window">
+	            <field name="name">Autres frais</field>
+	            <field name="res_model">account.other.charge</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">form,tree</field>
+	            <field name="view_id" ref="account_other_charge_tree_form"/>
+	        </record>
+
+			<menuitem id="frais_timbre_menu" name="Autres Taxes" parent="account.account_account_menu" groups="base.group_no_one" action="open_view_account_other_charge_tree"/>
+	</data>
+</openerp>

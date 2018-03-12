@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    
+    		  <record model="ir.ui.view" id="task_inh_form_view">
+                <field name="name">project.task.form</field>
+                <field name="model">project.task</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="project.view_task_form2"/>
+                <field name="arch" type="xml">
+
+                    <field name="tag_ids" position="after">
+                        <field name="alerte_mail"/>
+                    </field>
+
+                    <xpath  expr="header" position="inside">
+                        <!--<button name="notif_user" states="draft,open,pending" groups="project.group_project_manager" string="Notifier" type="object"/>-->
+                        <button name="notif_user" groups="project.group_project_manager" string="Notifier" type="object"/>
+                    </xpath>
+
+
+                    <field name="date_assign" position="after">
+                        <field name="delai"/>
+                    </field>
+
+                </field>
+            </record>
+    		
+    		
+    	    <record model="ir.ui.view" id="task_type_inh_form_view">
+                <field name="name">project.task.type.form</field>
+                <field name="model">project.task.type</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="project.task_type_edit"/>
+                <field name="arch" type="xml">
+                		<field name="name" position="after">
+                			<field name="use_template"/>
+                		</field>
+                		
+                        <field name="description" position="after">
+                        	<separator string="Modèle de tâches" attrs="{'invisible':[('use_template','=',False)]}"/>
+                        	<field name="task_template_ids" nolabel="1" colspan="4" attrs="{'invisible':[('use_template','=',False)]}">
+                        		<tree editable="bottom">
+                        			<field name="name"/>
+                        			<field name="planned_hours"/>
+                        			<field name="delai"/>
+                        			<field name="categ_ids" widget="many2many_tags" invisible="1"/>
+                        			<field name="sequence"/>
+                        			<field name="priority"/>
+                        			<field name="alerte_mail"/>
+                        			<field name="description"/>
+                        		</tree>
+                        	</field>
+                        </field>
+                </field>
+            </record>
+            
+            
+            <!-- <record model="ir.ui.view" id="project_inh_form_view">
+                <field name="name">project.project.form</field>
+                <field name="model">project.project</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="project.project.edit_project"/>
+                <field name="arch" type="xml">
+                       <xpath expr="//field[@name='name']" position="replace" />
+                       		
+                       
+                </field>
+            </record> -->
+           
+    </data>
+</odoo>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    <record model="ir.ui.view" id="res_users_inher_form_view">
+		<field name="name">res.users.form</field>
+		<field name="model">res.users</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="base.view_users_form"/>
+		<field name="arch" type="xml">
+			  <field name="partner_id" position="after">
+				  <field name="technicien"/>
+				  <field name="is_cashier"/>
+			  </field>
+			  <field name="signature" position="after">
+				<field name="signature_numerique" widget="image"/>
+			  </field>
+			  <notebook>
+				<page string="Responsables / Achats">
+					<field name="project_responsible_ids" nolabel="1"/>
+				</page>
+			  </notebook>
+		</field>
+	</record>
+
+	 <!--<record model="ir.ui.view" id="employee_inh_form_view">-->
+		<!--<field name="name">hr.employee.form</field>-->
+		<!--<field name="model">hr.employee</field>-->
+		<!--<field name="type">form</field>-->
+		<!--<field name="inherit_id" ref="hr.view_employee_form"/>-->
+		<!--<field name="arch" type="xml">-->
+			  <!--<notebook>-->
+				<!--<page string="Demande d'achat">-->
+					<!--<separator string="Expression de besoin"/>-->
+						<!--<field name="besoin_ids"/>-->
+					<!--<separator string="Demande d'achat"/>-->
+						<!--<field name="da_ids"/>-->
+				<!--</page>-->
+			  <!--</notebook>-->
+		<!--</field>-->
+	<!--</record>-->
+
+	<!--<record model="ir.ui.view" id="company_inh_form_view">-->
+		<!--<field name="name">res.company.form</field>-->
+		<!--<field name="model">res.company</field>-->
+		<!--<field name="type">form</field>-->
+		<!--<field name="inherit_id" ref="base.view_company_form"/>-->
+		<!--<field name="arch" type="xml">-->
+			  <!--<notebook>-->
+				<!--<page string="Signatures">-->
+					<!--<group string="Postes" colspan="4" col="4">-->
+						<!--<field name="dg_id"/>-->
+						<!--<field name="mail_direction_gle"/>-->
+						<!--<field name="resp_finance_id"/>-->
+						<!--<field name="mail_dep_finance"/>-->
+						<!--<field name="res_support_id"/>-->
+						<!--<field name="mail_support"/>-->
+						<!--<field name="res_projet_id"/>-->
+						<!--<field name="mail_projet"/>-->
+						<!--<field name="res_informatique_id"/>-->
+						<!--<field name="mail_res_informatique"/>-->
+						<!--<field name="res_achat_id"/>-->
+						<!--<field name="mail_sce_achat"/>-->
+						<!--<field name="res_caisse_id"/>-->
+						<!--<field name="mail_sce_caisse"/>-->
+						<!--<field name="res_crh"/>-->
+						<!--<field name="mail_res_crh"/>-->
+
+					<!--</group>-->
+					<!--<group string="Signatures" colspan="4" col="4">-->
+						<!--<field name="signature_dg" widget="image"/>-->
+						<!--<field name="signature_finance" widget="image"/>-->
+					<!--</group>-->
+					<!--<group string="Pied de page" colspan="4">-->
+						<!--<field name="pied_page" widget="image"/>-->
+					<!--</group>-->
+
+				<!--</page>-->
+			  <!--</notebook>-->
+		<!--</field>-->
+	<!--</record>-->
+            <!-- -->
+            
+    </data>
+</openerp>

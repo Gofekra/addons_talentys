@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <template id="report_justificatif_da">
+        <t t-call="report.html_container">
+            <t t-call="report.custom_external_layout">
+                <t t-foreach="docs" t-as="o">
+                <!--<t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />-->
+                <div class="page">
+                    <br/><br/>
+                    <div class="row">
+                        <p style="text-align:center;font-size:30px;color:grey;">Justification de demande d'achat</p>
+                    </div>
+                    <br/><br/><br/>
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr style="background-color:#e6e6e6;">
+                                    <th style="border:solid black 2px;" width="10%">Pour :</th>
+                                    <th style="border:solid black 2px;" width="30%"></th>
+                                    <th style="border:solid black 2px;" width="30%">Par :</th>
+                                    <th style="border:solid black 2px;" width="30%">En la personne de :</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border:solid black 2px;"></td>
+                                    <td style="border:solid black 2px;"></td>
+                                    <td style="border:solid black 2px;"></td>
+                                    <td style="border:solid black 2px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:solid black 2px;"></td>
+                                    <td colspan="3" style="border:solid black 2px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style=" border:solid black 2px;"></td>
+                                    <td colspan="3" style="border:solid black 2px;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td style="border:solid black 2px;text-align:center;">
+                                    La présente demande s'inscrit dans le cadre du renouvellement des licences FortiGuard des équipements Fortinet de Talentys.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+            </t>
+        </t>
+    </template>
+</data>
+</odoo>

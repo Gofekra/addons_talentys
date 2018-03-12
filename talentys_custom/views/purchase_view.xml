@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+	
+		<record model="ir.ui.view" id="purchase_inherit_view">
+            <field name="name">pruchase.order</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+				<field name="incoterm_id" position="replace">
+					<field name="achat_id" />
+				</field>
+			</field>
+        </record>
+
+	</data>
+</openerp>

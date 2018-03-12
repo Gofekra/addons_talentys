@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+    
+    <!-- Talentys rules -->
+	
+	<record model="ir.rule" id="exp_besoin_rule">
+        <field name="name">Own DA Visibility</field>
+        <field name="model_id" ref="model_purchase_exp_besoin"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|','|',('user_id','=',user.id),('user_id.project_responsible_ids','in',user.id),('user_id.responsable_achat','=',True)]</field>
+    </record>
+	
+	<record model="ir.rule" id="project_visibility_rule">
+        <field name="name">Own project visibility</field>
+        <field name="model_id" ref="project.model_project_project"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|','|',('members','in',user.id),('user_id','=',user.id),('user_id.project_responsible_ids','in',user.id)]</field>
+    </record>
+    
+    </data>
+</openerp>

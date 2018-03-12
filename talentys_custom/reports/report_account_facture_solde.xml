@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <template id="report_acompte_facture_solde2">
+        <t t-call="report.html_container">
+            <t t-call="report.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+                <div class="page" style="font-size: 12px">
+
+            <div class="row" style="width: 2%; padding:2%"></div>
+
+            <div class="row">
+
+                <div class="col-xs-12" style="text-align:center;">
+                    <h4>
+                        <span t-if="o.type_facture == 'normal' and (o.state in ('open', 'paid', 'draft'))">Facture</span>
+                        <span t-if="o.type_facture == 'solde'  and (o.state in ('open', 'paid', 'draft'))">Facture de solde</span>
+                        <span t-if="o.type_facture == 'acompte' and (o.state in ('open', 'paid', 'draft'))">Facture d'acompte</span>
+                        <span t-if="o.type_facture == 'avoir' and (o.state in ('open', 'paid', 'draft'))">Facture d'avoir</span>
+                        <span t-if="o.type_facture == 'exoneration' and (o.state in ('open', 'paid', 'draft'))">Facture </span>
+                        <!--<span t-field="o.number"/>-->
+                    </h4>
+                    <br></br><br></br>
+                </div>
+                <div class="cl">
+                    <style>
+                        .cl{
+                           margin-left:500;
+                        }
+                    </style>
+                    <p><strong><span t-field="o.partner_id"/></strong></p>
+                    <p><span t-field="o.partner_id.street2"/></p>
+                    <p>Tél:<span t-field="o.partner_id.phone"/></p>
+                    <p>Fax:<span t-field="o.partner_id.fax"/></p>
+                    <p>CC:<span t-field="o.partner_id.compte_contribuable"/></p>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <div>
+                    <strong><span t-field="o.number"/></strong>
+                </div>
+
+            </div>
+            <br/>
+            <br/>
+
+            <!-- Is there a discount on at least one line? -->
+            <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
+            <!--Group product by categ_id-->
+            <t t-set="product_category" t-value="[]"/>
+            <t t-foreach="o.invoice_line_ids" t-as="l">
+                <t t-set="product_category" t-value="product_category+[l.product_id.categ_id]"/>
+            </t>
+
+            <div class="row">
+            <table class="table table-condensed" style="background-color: gainsboro;">
+                <thead style="font-size:12px;">
+                    <tr  style=" background-color:#808080; color:white;">
+                        <th style="text-align:center; border-right:hidden;"><strong>Référence</strong></th>
+                        <th style="text-align:center;border-right:hidden;"><strong>Date de la facture</strong></th>
+                        <th class="text-right" style="text-align:center;border-right:hidden;"><strong>Moyen de paiement</strong></th>
+                        <th class="text-right" style="text-align:center; white-space: nowrap;border-right:hidden;"><strong>Ref. Partenaire</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align:center;"><span t-field="o.number"/></td>
+                        <td style="text-align:center;"><span t-field="o.date_invoice" t-field-options='{"format":"dd/MM/yyyy"}'/></td>
+                        <td style="text-align:center;"><span t-field="o.mode_paiement"/></td>
+                        <td style="text-align:center;"><span t-field="o.partner_id.ref"/></td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <table class="table table-condensed" style="background-color: gainsboro;">
+                <thead style="font-size:12px;">
+                    <tr  style=" background-color:#808080; color:white;">
+                        <th><strong>Description</strong></th>
+                        <th><strong>Taxe</strong></th>
+                        <th>Quantité</th>
+                        <th><strong>Prix unitaire</strong></th>
+                        <th><strong>Rem(%)</strong></th>
+                        <th><strong>Montant CFA</strong></th>
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <t t-foreach="set(product_category)" t-as="category">
+
+                    <t t-foreach="o.invoice_line_ids" t-as="l">
+                        <!--<t t-if="category.id==l.product_id.categ_id.id">-->
+                            <tr>
+                                <!--<td style="text-align:center;">-->
+                                    <!--<span t-field="l.product_id.default_code"/></td>-->
+                                <td><span t-field="l.name"/></td>
+                                <td style=" text-align:center;"><span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/></td>
+                                <td style="text-align:center;">
+                                    <span t-field="l.quantity"/>
+                                    <!--<span t-field="l.uom_id"  groups="product.group_uom"/>-->
+                                </td>
+                                <td style="text-align:center;">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td style="text-align:center;">
+                                    <t t-if="l.discount">
+                                    <span t-field="l.discount"/>
+                                    </t>
+                                    <t t-if="l.discount == 0">
+                                    <span>-</span>
+                                    </t>
+                                </td>
+                                <td style="text-align:center;">
+                                    <t t-if="l.price_subtotal">
+                                    <span t-field="l.price_subtotal"/>
+                                    </t>
+                                    <t t-if="l.price_subtotal == 0">
+                                    <span>-</span>
+                                    </t>
+                                </td>
+                            </tr>
+                        <!--</t>-->
+                    </t>
+                    </t>
+
+                </tbody>
+            </table>
+                <table class="table table-condensed" style="background-color: gainsboro;">
+
+                    <thead style="font-size:12px;">
+                        <tr  style=" background-color:#808080; color:white;">
+                            <th style="text-align:center;border-right:hidden;"><strong>Total HT</strong></th>
+                            <th style="text-align:center;border-right:hidden;"><strong>Total TTC</strong></th>
+                            <th class="text-right" style="text-align:center;border-right:hidden;">Taux solde</th>
+                            <th class="text-right" style="text-align:center;border-right:hidden;">MT HT solde</th>
+                            <th  class="text-right" style="text-align:center;border-right:hidden;"><strong>Montant TVA(18%)</strong></th>
+                            <th class="text-right" style=" text-align:center; white-space: nowrap;"><strong>MTTC solde</strong></th>
+                            <th class="text-right" style=" text-align:center; white-space: nowrap;"><strong>Net à payer</strong></th>
+
+                        </tr>
+                   </thead>
+                        <t t-set="nap" t-value="o.amount_total*o.taux_solde/100"/>
+                        <t t-set="tva" t-value="(o.amount_total*o.taux_solde/100)*18/100"/>
+                        <t t-set="mttcsolde" t-value="(o.amount_total*o.taux_solde/100)*18/100+(o.amount_total*o.taux_solde/100)"/>
+                        <tbody>
+                            <tr>
+                                <td style=" text-align:center;"><span t-field="o.amount_untaxed"/></td>
+                                <td style=" text-align:center;"><span t-field="o.amount_total"/></td>
+                                <td style=" text-align:center;"><span t-field="o.taux_solde"/></td>
+                                <td style=" text-align:center;"><span t-esc="nap" t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></td>
+                                <td style=" text-align:center;"><span t-esc="tva" t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></td>
+                                <td style=" text-align:center;"><span t-esc="mttcsolde" t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+                                <td style=" text-align:center;"><strong><span t-esc="mttcsolde" t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>
+                        <strong>Arrèté la présente Facture à la somme de <span t-field="o.facture_solde"/></strong>
+                    </p>
+                </div>
+
+            </div><br/><br/>
+            <div>
+                <strong>Conditions de paiement:</strong>
+                <span t-field="o.payment_term_id.name"/>
+                <p>Garantie constructeur:</p>
+            </div>
+                    <br/>
+                    <br/>
+                    <br/>
+            <div style=" text-align:right;">
+                <p><strong>Auguste DIOP</strong></p>
+                <p>Directeur Général</p>
+            </div>
+            <br/>
+            <br/>
+            <div>
+                <p>Parité FCFA / EURO :</p>
+                <p>Nos prix sont établis pour une parité de FRANC CFA de 1 Euro = 655,957 F CFA</p>
+                <p>Toute modification de cette parité entrainera de facto le réajustement du prix en F CFA</p>
+            </div>
+
+        </div>
+            </t>
+            </t>
+        </t>
+    </template>
+</data>
+</odoo>

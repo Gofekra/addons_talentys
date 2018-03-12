@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_expression_besoin">
+        <field name="name">Expression de besoin</field>
+        <field name="description">Module de gestion des expressions de besoin</field>
+        <field name="sequence">9</field>
+    </record>
+
+    <record id="expression_simple_user" model="res.groups">
+        <field name="name">Utilisateur</field>
+        <field name="category_id" ref="module_expression_besoin"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="expression_technicien_user" model="res.groups">
+        <field name="name">Technicien</field>
+        <field name="category_id" ref="module_expression_besoin"/>
+        <field name="implied_ids" eval="[(4, ref('talentys_custom.expression_simple_user'))]"/>
+    </record>
+
+    <record id="expression_service_user" model="res.groups">
+        <field name="name">Chef de service</field>
+        <field name="category_id" ref="module_expression_besoin"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="expression_department_user" model="res.groups">
+        <field name="name">Chef de departement</field>
+        <field name="category_id" ref="module_expression_besoin"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="expression_finance_user" model="res.groups">
+        <field name="name">Responsable Financier</field>
+        <field name="category_id" ref="module_expression_besoin"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="expression_dg_user" model="res.groups">
+        <field name="name">Directeur Général</field>
+        <field name="category_id" ref="module_expression_besoin"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="expression_caissier_user" model="res.groups">
+        <field name="name">Caissier(ère)</field>
+        <field name="category_id" ref="module_expression_besoin"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <data >
+        <!-- Multi - Company Rules -->
+
+        <record model="ir.rule" id="expression_besoin_personnal">
+            <field name="name">Mes expressions de besoin</field>
+            <field name="model_id" ref="model_purchase_expression_besoin"/>
+            <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_simple_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="expression_besoin_technicien_personnal">
+            <field name="name">Mes expressions de besoin</field>
+            <field name="model_id" ref="model_purchase_expression_besoin"/>
+            <field name="domain_force">[('technicien_id','=',user.id),('type_demande', '=', 'technique')]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_technicien_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="expression_besoin_service_personnal">
+            <field name="name">Mes expressions de besoin</field>
+            <field name="model_id" ref="model_purchase_expression_besoin"/>
+            <field name="domain_force">[('chief_service_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_service_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="expression_besoin_department_personnal">
+            <field name="name">Mes expressions de besoin</field>
+            <field name="model_id" ref="model_purchase_expression_besoin"/>
+            <field name="domain_force">[('chief_department_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_department_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="expression_besoin_alll">
+            <field name="name">Expression de besoin</field>
+            <field name="model_id" ref="model_purchase_expression_besoin"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('purchase.group_purchase_manager'))]"/>
+        </record>
+
+        <!-- règles de gestion des demandes d'achat -->
+        <record model="ir.rule" id="purchase_request_personnal">
+            <field name="name">Mes demandes d'achat</field>
+            <field name="model_id" ref="model_purchase_purchase_request"/>
+            <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_simple_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="purchase_request_technicien_personnal">
+            <field name="name">Mes demandes d'achat</field>
+            <field name="model_id" ref="model_purchase_purchase_request"/>
+            <field name="domain_force">[('user_id','=',user.id),('type_demande','=','technique'),(user.is_technicien, '=', True)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_technicien_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="purchase_request_service">
+            <field name="name">Demandes d'achats</field>
+            <field name="model_id" ref="model_purchase_purchase_request"/>
+            <field name="domain_force">[('chief_service_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_service_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="purchase_request_department">
+            <field name="name">Demandes d'achats</field>
+            <field name="model_id" ref="model_purchase_purchase_request"/>
+            <field name="domain_force">[('chief_department_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_department_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="purchase_request_finance">
+            <field name="name">Demandes d'achats</field>
+            <field name="model_id" ref="model_purchase_purchase_request"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_finance_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="purchase_request_direction">
+            <field name="name">Demandes d'achats</field>
+            <field name="model_id" ref="model_purchase_purchase_request"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_dg_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="purchase_request_caissier">
+            <field name="name">Demandes d'achats</field>
+            <field name="model_id" ref="model_purchase_purchase_request"/>
+            <field name="domain_force">[('type_demande', '=', 'divers')]</field>
+            <field name="groups" eval="[(4, ref('talentys_custom.expression_caissier_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="purchase_request_achat_alll">
+            <field name="name">Expression de besoin</field>
+            <field name="model_id" ref="model_purchase_purchase_request"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('purchase.group_purchase_manager'))]"/>
+        </record>
+    </data>
+</odoo>

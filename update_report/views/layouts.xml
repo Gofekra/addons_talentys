@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+
+<template id="report.custom_external_layout">
+    <t t-set="data_report_margin_top" t-value="5"/>
+    <t t-set="data_report_margin_left" t-value="5"/>
+    <t t-set="data_report_margin_rigth" t-value="5"/>
+    <t t-set="data_report_header_spacing" t-value="5"/>
+    <!-- Multicompany -->
+    <t t-if="not o and doc">
+        <t t-set="o" t-value="doc"/>
+    </t>
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+
+    <t t-call="report.custom_external_layout_header" />
+    <t t-raw="0" />
+    <t t-call="report.custom_external_layout_footer" />
+</template>
+
+<template id="report.custom_external_layout_header">
+    <div class="header">
+        <style type="text/css">
+            .row { margin: none none; }
+            table { font-size: 9px; }
+        </style>
+        <div class="row">
+            <table>
+                <tr>
+                    <td class="">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"  style="height: 100px; width: 250px;" />
+                    </td>
+                    <td width="25%"> Cocody - II PLATEAUX LES VALLONS<br/>RUE J 81 SOPIM VILLA N° 3<br/>25 BP 1180 ABIDJAN 25</td>
+                    <td width="15%"> Tél : +225 22 417 268<br/><span style="margin-left: 2.5em">+225 22 417 269</span><br/>Tél : +225 22 417 169</td>
+                    <td width="25%" >RCM:2007-B-4685/CC:0732179 N<br/>S.A au Capital de 100.000.000 FCFA<br/>BACI CI034 01001 011354050003 38</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</template>
+
+<template id="report.custom_external_layout_footer">
+    <div class="footer">
+        <div class="text-center" style="border-top: 1px solid black;">
+            <img t-if="company.pied_page" t-att-src="'data:image/png;base64,%s' % company.pied_page" style="width: 100%;"/>
+        </div>
+    </div>
+</template>
+
+
+</data>
+</openerp>

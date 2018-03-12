@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    <record id="view_achat_analysis_tree" model="ir.ui.view">
+        <field name="name">report.achat.analysis.tree</field>
+        <field name="model">report.achat.analysis</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Analyse des ordres d'achat">
+                <field name="date_planned" invisible="1"/>
+                <field name="product_uom" invisible="1"/>
+                <field name="demande_id" invisible="1"/>
+                <field name="price_unit" invisible="0"/>
+                <field name="partner_id" invisible="1" context="{'contact_display':'partner'}"/>
+                <field name="product_id" invisible="1"/>
+                <field name="product_qty" sum="Total quantity"/>
+           </tree>
+        </field>
+    </record>
+    
+    
+    <record id="report_achat_analysis_search" model="ir.ui.view">
+        <field name="name">report.achat.analysis.search</field>
+        <field name="model">report.achat.analysis</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Analyse des achats">
+            	<group>
+	                <filter icon="terp-go-year" string="Year"
+	                domain="[('date_planned','&lt;=', time.strftime('%%Y-%%m-%%d')),('date_planned','&gt;=',time.strftime('%%Y-01-01'))]"
+	                help="Current year"/>
+	                
+	                <filter icon="terp-go-month"
+	                 string="Month-1"
+	                 name="month-1"
+	                 domain="[('date_planned','&lt;=', (datetime.date.today() - relativedelta(day=31, months=1)).strftime('%%Y-%%m-%%d')),('date_planned','&gt;=',(datetime.date.today() - relativedelta(day=1,months=1)).strftime('%%Y-%%m-%%d'))]"
+	                 help="Last month"/>
+	                
+	                <filter icon="terp-go-month" string="Month"
+	                name="month"
+	                domain="[('date_planned','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('date_planned','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"
+	                help="Current month"/>
+	                
+	                 <separator orientation="vertical"/>
+	                 <field name="partner_id" widget="selection"/>
+	                 <field name="product_id" widget="selection"/>
+                </group>
+                <newline/>
+                <group expand="1" string="Group By...">
+                    <filter name="group_partner" string="Partner" icon="terp-partner" context="{'group_by':'partner_id'}"/>
+                    <separator orientation="vertical"/>
+                    <filter name="group_demande" string="Demande" icon="terp-stage" context="{'group_by':'demande_id'}"/>
+                    <filter name="group_product" string="Produit" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    
+    <record id="action_achat_analysis_report" model="ir.actions.act_window">
+        <field name="name">Analyse des achats</field>
+        <field name="res_model">report.achat.analysis</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id"  eval="False"/>
+        <field name="context">{'contact_display': 'partner','search_default_group_demande':1,'search_default_group_product':1}</field>
+        <field name="help">Analyse des ordres d'achat</field>
+    </record>
+    
+    <menuitem id="report_achat_analysis_menu" name="Analyse des D.A" 
+    parent="requisition_board_main_menu" 
+    action="action_achat_analysis_report"
+    groups="group_manager"
+    sequence="13"/>
+    
+    
+    </data>
+</openerp>

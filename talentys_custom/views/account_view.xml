@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+         <record model="ir.ui.view" id="invoice_inh_form_view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                 <field name="tax_line_ids" position="before">
+                    <group string="Impression masques" col="4" colspan="4">
+                        <field name="type_facture"/>
+                        <field name="order_id" attrs="{'invisible': ['|',('type_facture','=',False),('type_facture','=','exoneration')]}"/>
+                        <field name="taux_acompte" invisible="1"/>
+                        <field name="total_acompte" invisible="1"/>
+                        <field name="net_paie" invisible="1"/>
+                        <field name="amount_total_letter" invisible="1"/>
+                        <field name="dg_name" invisible="1"/>
+                        <field name="amount_letter"/>
+                    </group>
+                 </field>
+                 <field name="move_id" position="after">
+                    <field name="total_discount" invisible="1"/>
+                    <field name="mode_paiement"/>
+                     <!--<field name="montant_lettre"/>-->
+                 </field>
+                  <!--<field name="account_id" position="after">-->
+                    <!--<field name="acompte"/>-->
+                 <!--</field>-->
+
+            </field>
+        </record>
+
+        <!-- gestion des comptes analytiques -->
+        <record model="ir.ui.view" id="account_analytic_inh_form_view">
+            <field name="name">account.analytic.account.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="parent_id"/>
+                    <field name="type"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

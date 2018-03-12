@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+               <record model="ir.ui.view" id="proj_task_template_form_view">
+                <field name="name">create.task.template.form</field>
+                <field name="model">create.task.template</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Create task template">
+                    	<group col="4" colspan="4">
+                        	<field name="project_id"/>
+                        	<button name="generate_task_template" type="object" string="Générer le modèle de tâches" class="oe_highlight"/>
+                        </group>
+                    </form>
+                </field>
+            </record>
+    
+    		
+    		<act_window name="Générer un modèle de tâches"
+			domain="[('state','in',('draft','open','pending'))]"
+			res_model="create.task.template"
+			src_model="project.project"
+			id="act_project_temp_wizard"
+			key2="client_action_multi" target="new"
+			view_mode="form"
+			/>
+			
+			
+			<record model="ir.ui.view" id="proj_task_notification_form_view">
+                <field name="name">create.task.notification.form</field>
+                <field name="model">create.task.notification</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Create task Notification">
+                    	<group col="4" colspan="4">
+                        	<field name="project_id"/>
+                        	<button name="generate_task_notification" type="object" string="Notifier les tâches à l'équipe projet" class="oe_highlight"
+                        	help="Ce bouton permet d'envoyer des notifications par mail aux personnes en charges d'exécution des tâches sur le projet"/>
+                        </group>
+                    </form>
+                </field>
+            </record>
+			
+			
+			<act_window name="Notifier les tâches"
+			domain="[[('state','in',('draft','open','pending'))]]"
+			res_model="create.task.notification"
+			src_model="project.project"
+			id="act_project_task_notif_wizard"
+			key2="client_action_multi" target="new"
+			view_mode="form"
+			/>
+    </data>
+</openerp>

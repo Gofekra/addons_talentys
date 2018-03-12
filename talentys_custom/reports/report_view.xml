@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<report
+            id="sale.report_sale_order"
+            string="Devis/Commande"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="talentys_custom.report_saleorder_bf"
+            name="talentys_custom.report_saleorder_bf"
+        />
+
+        <report
+            id="sale.report_sale_order_talentys_new"
+            string="Devis/Commande"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="talentys_custom.report_saleorder_talentys"
+            name="talentys_custom.report_saleorder_talentys"
+        />
+
+        <report
+            string="Demande d'achat"
+            id="report_purchase_request"
+            model="purchase.purchase.request"
+            report_type="qweb-pdf"
+            name="talentys_custom.report_purchase_purchase_request"
+            file="talentys_custom.report_purchase_purchase_request"
+        />
+
+        <report
+            string="Justificatif"
+            id="report_purchase_request_justif"
+            model="purchase.purchase.request"
+            report_type="qweb-pdf"
+            name="talentys_custom.report_purchase_purchase_request_justif"
+            file="talentys_custom.report_purchase_purchase_request_justif"
+        />
+
+        <report
+            string="Bon de livraison"
+            id="stock.action_report_delivery"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="talentys_custom.report_bon_livraison_bf"
+            file="talentys_custom.report_bon_livraison_bf"
+            />
+
+        <report
+            string="Factures"
+            id="account.report_invoice"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            name="talentys_custom.report_account_invoice_custom"
+            file="talentys_custom.report_account_invoice_custom"
+            />
+	<!--demande d'achat-->
+        <report
+            string="Demande d'achat"
+            id="report_purchase_achat"
+            model="purchase.exp.achat"
+            report_type="qweb-pdf"
+            name="talentys_custom.report_demande_achat"
+            file="talentys_custom.report_demande_achat"
+        />
+        <report
+            string="Justificatif"
+            id="report_purchase_justificatif"
+            model="purchase.exp.achat"
+            report_type="qweb-pdf"
+            name="talentys_custom.report_justificatif_da"
+            file="talentys_custom.report_justificatif_da"
+        />
+        <!--Achat bon de Commande, Demande de prix-->
+        <report
+            string="Bon de commande"
+            id="report_achat_bon_commande"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            name="talentys_custom.report_demande_achat"
+            file="talentys_custom.report_demande_achat"
+        />
+        <!--<report-->
+            <!--string="Demande de prix"-->
+            <!--id="report_achat_demande_prix"-->
+            <!--model="purchase.order"-->
+            <!--report_type="qweb-pdf"-->
+            <!--name="talentys_custom.report_justificatif_da"-->
+            <!--file="talentys_custom.report_justificatif_da"-->
+        <!--/>-->
+        <report
+            string="Bon de commande"
+            id="purchase.action_report_purchase_order"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            name="talentys_custom.purchase_order_template"
+            file="talentys_custom.purchase_order_template"
+        />
+
+        <report
+            string="Demande de prix"
+            id="purchase.report_purchase_quotation"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            name="talentys_custom.purchase_quotation_templates"
+            file="talentys_custom.purchase_quotation_templates"
+        />
+
+    </data>
+</odoo>

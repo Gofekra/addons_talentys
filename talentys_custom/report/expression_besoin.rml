@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(612.0,792.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="57.0" y1="57.0" width="498" height="678"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="6,-1" stop="6,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="7,-1" stop="7,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="8,-1" stop="8,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="9,-1" stop="9,-1"/>
+      <blockBackground colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <blockBackground colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <blockBackground colorName="#e6e6e6" start="2,0" stop="2,-1"/>
+      <blockBackground colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+      <blockBackground colorName="#e6e6e6" start="4,0" stop="4,-1"/>
+      <blockBackground colorName="#e6e6e6" start="5,0" stop="5,-1"/>
+      <blockBackground colorName="#e6e6e6" start="6,0" stop="6,-1"/>
+      <blockBackground colorName="#e6e6e6" start="7,0" stop="7,-1"/>
+      <blockBackground colorName="#e6e6e6" start="8,0" stop="8,-1"/>
+      <blockBackground colorName="#e6e6e6" start="9,0" stop="9,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="6,-1" stop="6,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="7,-1" stop="7,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="8,-1" stop="8,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="9,-1" stop="9,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="10,-1" stop="10,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="6,-1" stop="6,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="7,-1" stop="7,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau5">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+      <blockBackground colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <blockBackground colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau6">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" fontSize="9.0" leading="11"/>
+    <paraStyle name="P2" fontName="Helvetica-Bold" fontSize="11.0" leading="14"/>
+    <paraStyle name="P3" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P4" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P5" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P6" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P7" fontName="Helvetica" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P8" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P9" fontName="Helvetica" fontSize="4.0" leading="5" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P10" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P11" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica-Oblique" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P12" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P13" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P14" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P15" fontName="Helvetica" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P16" fontName="Helvetica" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P17" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P18" fontName="Helvetica" fontSize="7.0" leading="9"/>
+    <paraStyle name="P19" fontName="Helvetica-Bold" fontSize="7.0" leading="9" alignment="LEFT"/>
+    <paraStyle name="P20" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="P21" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="P22" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="P23" fontName="Helvetica-Bold" fontSize="6.0" leading="8" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="P24" fontName="Helvetica" fontSize="7.0" leading="9" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P25" fontName="Helvetica" fontSize="6.0" leading="8" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P26" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica-Oblique" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Table Contents" fontName="Helvetica"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="terp_default_Bold_8" fontName="Helvetica-Bold" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_9" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_tblheader_Details" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_Details_Centre" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="List Contents" rightIndent="0.0" leftIndent="28.0" fontName="Helvetica"/>
+    <paraStyle name="terp_default_Right_8" fontName="Helvetica" fontSize="7.0" leading="9" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Right_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_8_italic" rightIndent="0.0" leftIndent="20.0" fontName="Helvetica-Oblique" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Space bet user and signature" fontName="Helvetica" fontSize="4.0" leading="5" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="P3">[[repeatIn(objects,'o')]]</para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="166.0,114.0,219.0" style="Tableau1">
+      <tr>
+        <td>
+          <para style="P8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P3">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5">Demandeur :</para>
+          <para style="P3">[[o.demandeur_id.name]]</para>
+          <para style="P3">[[o.demandeur_id.address_home_id and o.demandeur_id.address_home_id.name or '' ]],[[o.demandeur_id.address_home_id and o.demandeur_id.address_home_id.street or '' ]],[[o.demandeur_id.address_home_id and o.demandeur_id.address_home_id.street2 or '' ]],[[o.demandeur_id.address_home_id and o.demandeur_id.address_home_id.zip or '' ]],[[o.demandeur_id.address_home_id and o.demandeur_id.address_home_id.city or '' ]],[[o.demandeur_id.address_home_id and o.demandeur_id.address_home_id.state_id and o.demandeur_id.address_home_id.state_id.name or '' ]] [[o.demandeur_id.address_home_id and o.demandeur_id.address_home_id.country_id and o.demandeur_id.address_home_id.country_id.name or '' ]]</para>
+          <para style="P3">[[ o.demandeur_id.work_email or '' ]]</para>
+          <para style="P3">[[ o.number or '' ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P2">BON DE COMMANDE INITIAL : [[o.name]]</para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="125.0,125.0,125.0,125.0" style="Tableau2">
+      <tr>
+        <td>
+          <para style="P18">Dégré d'urgence : [[o.urgence]]</para>
+        </td>
+        <td>
+          <para style="P18">Type Aeronef : [[o.type_aeronef_id.name]]</para>
+        </td>
+        <td>
+          <para style="P18">Immatriculation : [[o.matricule_id.name]]</para>
+        </td>
+        <td>
+          <para style="P18">Date : [[formatLang(o.date,date=True)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P10">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="86.0,139.0,34.0,34.0,34.0,34.0,34.0,34.0,34.0,34.0" style="Tableau3">
+      <tr>
+        <td>
+          <para style="P20">Référence</para>
+        </td>
+        <td>
+          <para style="P21">Désignation</para>
+        </td>
+        <td>
+          <para style="P22">Qté</para>
+        </td>
+        <td>
+          <para style="P23">Aeronef</para>
+        </td>
+        <td>
+          <para style="P23">Magasin</para>
+        </td>
+        <td>
+          <para style="P23">Chapitre</para>
+        </td>
+        <td>
+          <para style="P23">Section</para>
+        </td>
+        <td>
+          <para style="P23">Figure</para>
+        </td>
+        <td>
+          <para style="P23">Page</para>
+        </td>
+        <td>
+          <para style="P23">Item</para>
+        </td>
+      </tr>
+    </blockTable>
+    <section>
+      <para style="P6">[[ repeatIn(o.detail_besoin,'line') ]]</para>
+      <blockTable colWidths="87.0,138.0,17.0,18.0,34.0,34.0,34.0,34.0,34.0,34.0,34.0" style="Tableau4">
+        <tr>
+          <td>
+            <para style="P14">[[ line.product_id.default_code]]</para>
+          </td>
+          <td>
+            <para style="P14">[[ line.product_id.name ]]</para>
+          </td>
+          <td>
+            <para style="P15">[[ formatLang(line.quantite,digits=0) ]]</para>
+          </td>
+          <td>
+            <para style="P24">[[line.product_id.uom_po_id.name]]</para>
+          </td>
+          <td>
+            <para style="P25">[[line.type_aeronef_id.name]]</para>
+          </td>
+          <td>
+            <para style="P25">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P25">[[line.chapitre_id.name]]</para>
+          </td>
+          <td>
+            <para style="P25">[[line.secteur_id.name]]</para>
+          </td>
+          <td>
+            <para style="P25">[[line.figure_id.name]]</para>
+          </td>
+          <td>
+            <para style="P25">[[line.page_id.name]]</para>
+          </td>
+          <td>
+            <para style="P25">[[line.item_id.name]]</para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para style="P11">[[ format(line.affectation or removeParentNode('tr')) ]]</para>
+          </td>
+          <td>
+            <para style="P11">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P11">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P11">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P11">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P11">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P11">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P11">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+    </section>
+    <section>
+      <para style="P4">
+        <font color="white"> </font>
+      </para>
+      <blockTable colWidths="117.0,381.0" style="Tableau5">
+        <tr>
+          <td>
+            <para style="P19">Utilisateur</para>
+          </td>
+          <td>
+            <para style="P19">Commentaire</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="117.0,381.0" style="Tableau6">
+        <tr>
+          <td>
+            <para style="P16">[[ repeatIn(o.commentaire_ids,'line') ]] [[line.user_id.name]]</para>
+          </td>
+          <td>
+            <para style="P16">[[line.commentaire]]</para>
+          </td>
+        </tr>
+      </blockTable>
+      <para style="P17">
+        <font color="white"> </font>
+      </para>
+      <para style="P17">
+        <font color="white"> </font>
+      </para>
+      <para style="P4">
+        <font color="white"> </font>
+      </para>
+      <para style="P4">
+        <font color="white"> </font>
+      </para>
+      <para style="P4">Bien à vous,</para>
+      <para style="P4">
+        <font color="white"> </font>
+      </para>
+      <para style="P9">
+        <font color="white"> </font>
+      </para>
+      <para style="P7">[[ user.signature or '' ]]</para>
+    </section>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P12">
+      <font color="white"> </font>
+    </para>
+    <para style="Standard">
+      <font color="white"> </font>
+    </para>
+  </story>
+</document>

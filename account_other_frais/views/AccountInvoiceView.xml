@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<!-- les convetions -->
+    	  <record model="ir.ui.view" id="account_invoice_update_frais_form">
+                <field name="name">account.invoice.form</field>
+                <field name="model">account.invoice</field>
+                <field name="inherit_id" ref='account.invoice_form'/>
+                <field name="arch" type="xml">
+                	<field name='amount_tax' position='after'>
+                		<div>
+                            <label for="amount_frais_timbre"/>
+                            <button name="compute_frais_timbre" states="draft,proforma2" string="(update)" class="oe_link oe_edit_only" type="object" help="Recompute taxes and total"/>
+                        </div>
+                		<field name="amount_frais_timbre" nolabel="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                		<!-- <field name=''/> -->
+                	</field>
+                	<field name='period_id' position='after'>
+                		<field name="frais_timbre_id"/>
+                	</field>
+                </field>
+          </record>
+   </data>
+</openerp>

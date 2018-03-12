@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+		        
+		   <!-- <record id="product_form_view_inherit" model="ir.ui.view">
+	            <field name="name">product.form.inh</field>
+	            <field name="model">product.product</field>
+	            <field name="inherit_id" ref="product.product_normal_form_view"/>
+	            <field name="arch" type="xml">
+	                <div name="options" position="inside">
+	                    <field name="aeronef_ok"/>
+	                    <label for="aeronef_ok"/>
+	                </div>
+	            </field>
+        	</record> -->
+		
+		
+		    <record model="ir.ui.view" id="ex_besoin_tree_view">
+			    <field name="name">exp.besoin.tree</field>
+			    <field name="model">purchase.exp.besoin</field>
+			    <field name="type">tree</field>
+				<field name="arch" type="xml">
+				    <tree string="Demande d'achat" colors="blue:state=='draft'">
+					    <field name="name"/> 
+					    <field name="demandeur_id"/>
+						<field name="write_uid" string="Dernier validateur"/>
+					    <field name="date"/>
+					    <field name="urgence"/>
+					   <field name="type_demande"/>
+					   <field name="option"/>
+					    <field name="state"/>
+				    </tree>
+			    </field>
+		    </record>
+		            
+		              
+		    <record model="ir.ui.view" id="exp_besoin_form_view">
+			    <field name="name">exp.besoin.form</field>
+			    <field name="model">purchase.exp.besoin</field>
+			    <field name="type">form</field>
+			    <field name="priority" eval="31"/>
+			    <field name="arch" type="xml">
+				    <form string="Demande d'achat" version="7.0">
+						<header>
+							<button name="action_confirmed" type="object" string="Confirmer" states="draft"/>
+							<button name="action_transmettre_achat" type="object" string="Transmettre pour cotation"
+									states="general,demandeur" class="oe_highlight" groups="talentys_custom.group_user"/>
+							<button name="action_achat" type="object" string="Générer la cotation" states="transmitted"
+									class="oe_highlight" groups="sales_team.group_sale_manager"/>
+							<button name="action_retour_quotation" type="object" string="Notifier le retour Fournisseur"
+									states="quotation" class="oe_highlight" groups="sales_team.group_sale_manager"/>
+							<button name="action_done" type="object" string="Valider" class="oe_highlight" states="quotation_conf"
+									groups="talentys_custom.group_user"/>
+							<button name="%(talentys_custom.action_affcted_client)d" string="Affecté un Technicien" type="action"
+                        		states="service" class="oe_highlight" groups="talentys_custom.group_service"/>
+							<button name="action_submit" string="Transmettre au Chef Serv." type="object" states="technique"
+									class="oe_highlight"/>
+							<button name="action_return_technique" string="Transmettre au Chef Serv." type="object" states="affected"
+									class="oe_highlight" groups="talentys_custom.group_technicien"/>
+							<button name="action_submit_departmentChef" string="Transmettre au Chef Depart." type="object" states="technique_ret"
+									class="oe_highlight" groups="talentys_custom.group_service"/>
+							<button name="action_submit_demandeur" string="Transmettre au Demandeur" type="object" states="departement"
+									class="oe_highlight" groups="talentys_custom.group_departement"/>
+							<button name="action_view_request" string="Afficher la DA" type="object" states="done"
+									class="oe_highlight"/>
+							<button name="action_draft" type="object" string="Mettre en bruoillon" states="confirmed,general,service,technique,transmitted"/>
+							<field name="state" widget="statusbar" statusbar_visible="draft,quotation,cancel" readonly="1"/>
+						</header>
+					    <sheet>
+					    	<h1>
+					    		<!--<label string="Expression de Besoin"/>-->
+					    		<field name="name" class="oe_inline" readonly="1" nolabel="1"/>
+					    	</h1>
+					    	
+						    <group colspan="4" col="4">
+						    	<field name="type_demande"/>
+						    	<field name="demandeur_id"/>
+						    	<field name="urgence"/>
+							    <field name="date" />
+							    <!-- <field name="remaining_request"/> -->
+			                    <field name="pricelist_id"/>
+							    <field name="alerte_mail"/>
+								<field name="location_id"/>
+							    <field name="technician_id" attrs="{'invisible':[('type_demande','!=','technique')],
+							    									'readonly': [('technician','=',True)]}" groups="talentys_custom.group_responsable"/>
+							    <field name="technician" attrs="{'invisible':['|',('type_demande','!=','technique'),('technician','=',False)]}" groups="talentys_custom.group_responsable"/>
+							    <field name="user_id" invisible="1"/>
+							    <field name="partner_id" invisible="1"/>
+								<field name="chief_finance_id" invisible="1"/>
+                                <field name="dg_id" invisible="1"/>
+                                <field name="achat_id" invisible="1"/>
+								<field name="chief_support_id" />
+								<field name="url_link" invisible="1"/>
+							    
+						    </group>
+						    <notebook colspan="4">  
+						    	<page string="Demande achat">
+						    		<field name="detail_besoin" nolabel="1" colspan="4">
+										<tree string="Détail demande d'achat">
+					  						<field name="product_id"/>
+					  						<field name="product_uom"/>
+					  						<field name="quantite" />
+					  						<field name="gave_qty" />
+					  						<field name="qte_restante" />
+					  						<field name="department_id"/>
+					  						<field name="raison_demande"/>
+					  						<field name="note" groups="talentys_custom.group_technicien"/>
+				  						</tree>
+			  						</field>
+			  						<separator String="Commentaires"/>
+			  						<!--<field name="commentaire_ids" nolabel="1" colspan="2">-->
+				                        	<!--<tree string="Commentaire" editable='top'>-->
+					                        	<!--<field name='user_id'/>-->
+					                        	<!--<field name='commentaire'/>-->
+				                        	<!--</tree>	-->
+		                        		<!--</field>-->
+						    	</page>
+						    	<page string="Demandes de cotation">
+						    		<field name="quotation_ids"/>
+						    	</page>
+						    </notebook>
+						  </sheet>
+						  <div class="oe_chatter">
+		                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+		                    <field name="message_ids" widget="mail_thread"/>
+		                  </div>
+				    </form>
+			    </field>
+		    </record>  
+		    
+		    
+		    <record model="ir.ui.view" id="detail_besoin_form_view">
+			    <field name="name">detail.exp.besoin.form</field>
+			    <field name="model">purchase.exp.besoin.detail</field>
+			    <field name="type">form</field>
+			    <field name="arch" type="xml">
+					<form string="Détail demande d'achat">
+						<notebook colspan="4">
+							<page string="Informations">
+							  	<group>
+									<group string="Général">
+										<separator colspan="2" />
+										<field name="product_id" />
+										<field name="product_uom" invisible="1"/>
+										<field name="quantite" />
+									</group>
+								  	<group string="Fournisseur" groups="talentys_custom.group_user">
+										<field name="partner_id"/>
+
+									</group>
+									<group string="Affectation">
+										<field name="department_id" widget="selection"/>
+										<field name="debut_periode" invisible="1"/>
+										<field name="fin_periode"   invisible="1"/>
+										<field name="periode_affectation" />
+									</group>
+									<group string="Livraison">
+										<field name="date_livr_souhaitee" />
+									</group>
+							  	</group>
+							  	<group col="4" string="Motif">
+								  	<field name="raison_demande" nolabel="1"/>
+							  	</group>
+						</page>
+						<page string="Caractéristiques techniques" groups="talentys_custom.group_technicien">
+							<field name="note" nolabel="1"/>
+						</page>
+
+ 					</notebook>				
+			  	</form>
+		    	</field>
+		    </record>
+    
+    
+    	   <record id="before_req_calendar_view" model="ir.ui.view">
+	            <field name="name">Expressions de Besoin</field>
+	            <field name="model">purchase.exp.besoin</field>
+	            <field name="arch" type="xml">
+	                <calendar string="Expressions de besoin" color="state" date_start="date">
+	                    <field name="user_id"/>
+	                    <field name="remaining_request" operator="+"/>
+	                </calendar>
+	            </field>
+           </record>
+    
+    
+		   <record id="purchase_requests_view_search" model="ir.ui.view">
+					<field name="name">purchase.besoin.view.search</field>
+					<field name="model">purchase.exp.besoin</field>
+					<field name="type">search</field>
+					<field name="arch" type="xml">
+						<search string="demande d'achat">
+							<group col='15' colspan='4'>  
+								<filter string="Demandeur" icon="terp-personal" domain="[]" context="{'group_by':'demandeur_id'}"/>
+								<filter string="Statut" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+								<filter string="Urgence" icon="terp-gnome-cpu-frequency-applet+" domain="[]" context="{'group_by':'urgence'}"/>
+								<separator orientation="vertical"/>
+								<field name="demandeur_id" string="Employé"/>
+								<field name="name"/>
+								<field name="urgence"/>
+								<field name="date"/>
+							</group>
+							<newline/>
+                  			<group expand="0" string="Regrouper par..." colspan="4" col="10" groups="talentys_custom.group_manager">
+                  				<filter string="Type demande" icon="terp-folder-yellow" domain="[]" context="{'group_by':'type_demande'}"/>
+								<filter string="option" icon="terp-folder-orange" domain="[]" context="{'group_by':'option'}"/>
+                  			</group>
+						</search>
+					</field>
+			</record>
+		  
+		    
+		    <act_window id="act_dmd_achat_wizard" name="Expression de besoin"
+				src_model="hr.employee"
+				res_model="purchase.exp.besoin"
+				key2="client_action_multi" target="new"
+				view_mode="form"
+				groups="group_user,group_technicien,group_responsable,group_manager"
+				/>
+			
+		    
+		   <!--   <act_window
+	        context="{'search_default_demandeur_id': [active_id], 'default_demandeur_id': active_id}"
+	        id="act_hr_employee_2_hr_demande_achat"
+	        name="Expression de besoin"
+	        res_model="purchase.exp.besoin"
+	        src_model="hr.employee"
+	        groups="group_user,group_technicien,group_responsable,group_manager"/>-->
+		    
+		    
+		    <record model="ir.actions.act_window" id="action_exp_besoin_view">
+			    <field name="name">Expression de Besoin</field>
+			    <field name="res_model">purchase.exp.besoin</field>
+				<field name="view_type">form</field>
+			    <field name="view_mode">tree,form,calendar</field>
+		    </record>
+		    
+		    
+		    <!--  Menus -->
+		
+		    <menuitem id="besoin_achat_menu" name="Expression des besoins" 
+		    parent="purchase.menu_purchase_root"
+		    sequence="0"/>
+		    
+		    <menuitem id="exp_besoin_achat_menu" name="Expression des besoins" 
+		    parent="besoin_achat_menu" 
+		    action="action_exp_besoin_view"
+		    groups="group_manager,group_responsable,group_user"
+		    sequence="1"/>
+		    
+		    <menuitem id="besoin_achat_menu_user" name="Expression des besoins" groups="group_user"/>
+    		
+
+    		<menuitem id="exp_besoin_achat_menu_user" name="Expression des besoins" 
+		    parent="besoin_achat_menu_user"
+		    action="action_exp_besoin_view"
+		    sequence="1"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="res_company_talentys_custom_form_view">
+            <field name="name">res.company.talentys_custom.form</field>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <field name="company_registry" position="after">
+                    <field name="ifu"/>
+                    <field name="fiscale"/>
+                </field>
+                <notebook position="inside">
+                    <page string="Customisation Talentys" name="talentys_custom">
+                        <group col="4">
+                            <field name="header_logo"/>
+                            <field name="footer_logo"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>
+
